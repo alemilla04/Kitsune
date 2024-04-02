@@ -1,0 +1,155 @@
+:root {
+    font-size: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li {
+    list-style: none;
+}
+
+/* ************* HEADER *************** */
+
+header {
+    background-color: #f2f2f2;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    /* Alinear verticalmente al centro */
+}
+
+header img {
+    max-width: 100px;
+    /* Ancho máximo de la imagen */
+    margin-right: 10px;
+    /* Espacio entre la imagen y el texto */
+}
+
+/* **************************** */
+
+/* ************* NAV *************** */
+
+.nav {
+    border-right: 1px solid #D6D9DC;
+    padding: 30px 0px 15px 15px;
+    width: 250px;
+    margin-left: 4rem;
+}
+
+.nav-usuarios {
+    margin-top: 40px;
+}
+
+.img-casa {
+    width: 20px;
+}
+
+.img-preguntas {
+    width: 20px;
+}
+
+.img-respuestas {
+    width: 20px;
+}
+
+.img-etiquetas {
+    width: 20px;
+}
+
+.nav ul {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav ul li a img{
+    margin-right: 10px;
+}
+
+.nav ul li {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav ul li a:hover {
+    background-color: #F2F2F2;
+    padding: 10px;
+    font-weight: bold;
+}
+/* **************************** */
+
+/* ******************* SIGN UP ******************/
+.signup-main {
+    min-height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+}
+
+.caja-sign-up {
+    margin: 20px auto;
+}
+
+.form-sign-up {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    box-shadow: 0px 0px 7px 0px gray;
+    border-radius: 3%;
+    padding: 1.5rem;
+
+    & input {
+        margin-top: 5px;
+        margin-bottom: 20px;
+        border-radius: 7px;
+        padding: 7px;
+    }
+}
+
+.form-sign-up label {
+    font-weight: bold;
+}
+
+.form-sign-up input[type=text], .form-sign-up input[type=password] {
+    border: 1px solid #BABFC5;
+}
+
+.form-sign-up span {
+    color: #3b3b3b;
+    margin-bottom: 30px;
+}
+
+.form-sign-up p {
+    color: red;
+    margin-bottom: 30px;
+}
+
+.form-sign-up input[type=submit] {
+    background-color: #1B75D0;
+    border: 1px solid #1B75D0;  
+    color: white;
+}
+
+.caja-sign-up h3 {
+    font-weight: normal;
+}
