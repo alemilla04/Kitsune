@@ -1,12 +1,11 @@
 <?php
 class User {
-    public $name = "";
-    public $surname = "";
+    public $nombre = "";
     public $email = "";
     public $password = "";
-    public $picture = "";
+    public $foto = "";
 
     public function __construct() {
-        $this->picture = "default.jpg";
+        $this->foto = "default.jpg";
     }
 }

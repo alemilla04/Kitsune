@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $_SESSION["OK"] = true;
 
     if($nombre != ""){
-        $_SESSION["user"]["name"];
+        $_SESSION["user"]["nombre"] = $nombre;
     } else {
         $_SESSION["errorNombre"] = "El nombre no puede estar vacío";
         $_SESSION["OK"] = false;
@@ -20,48 +20,55 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
     if($email != ""){
         if(checkEmail($email)){
-            $_SESSION["user"]["email"];
+            $_SESSION["user"]["email"] = $email;
+        } else{
+            $_SESSION["errorEmail"] = "Error en el formato del email";
+            $_SESSION["OK"] = false;
         }
-        $_SESSION["errorEmail"] = "Error en el formato del email";
-        $_SESSION["OK"] = false;
     } else {
         $_SESSION["errorEmail"] = "El email no puede estar vacío";
         $_SESSION["OK"] = false;
     }
 
     if($password != ""){
-        if($password2 != ""){
-            if(checkPassword($password)){
+        if(checkPassword($password)){
+            if($password2 != ""){
                 if($password === $password2) {
-                    $_SESSION["user"]["password"];
+                    $_SESSION["user"]["password"] = $password;
+                } else {
+                    $_SESSION["errorPassword"] = "Las contraseñas no coinciden";
+                    $_SESSION["OK"] = false;
                 }
             } else {
-                $_SESSION["errorPassword"] = "La contraseña debe contener 8 o más carácteres";        
+                $_SESSION["errorRepitePassword"] = "La contraseña no puede estar vacía";    
                 $_SESSION["OK"] = false;
             }
         } else {
-            $_SESSION["errorRepitePassword"] = "La contraseña no puede estar vacía";    
+            $_SESSION["errorPassword"] = "La contraseña debe contener 8 o más carácteres";        
             $_SESSION["OK"] = false;
-        }
+        } 
     } else{
-        $_SESSION["errorPassword"] = "La contraseña no puede estar vacía";
-        $_SESSION["OK"] = false;
+       $_SESSION["errorPassword"] = "La contraseña no puede estar vacía";
+       $_SESSION["OK"] = false;
     }
+        
+        
 
     if($_FILES["picture"]["error"] == UPLOAD_ERR_OK){
         $nombreFichero = $_FILES["picture"]["name"];
         move_uploaded_file($_FILES["picture"]["tmp_name"], "../Content/profile_pics/". $_FILES["picture"]["name"]);
+        $_SESSION["user"]["foto"] = $nombreFichero;
     }
 
     if($_SESSION["OK"] == true){
         $user = new User;
-        $user->name = $nombre;
+        $user->nombre = $nombre;
         $user->email = $email;
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $user->password = $passwordHash;
 
         if($_FILES["picture"]["error"] == UPLOAD_ERR_OK){
-            $user->picture = $nombreFichero;
+            $user->foto = $nombreFichero;
         }
 
         $insertarOK = insertDb($user);

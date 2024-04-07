@@ -48,14 +48,14 @@ if(isset($_SESSION["insertarOK"])){
             <form action="../Controllers/SignUpController.php" method="POST" enctype="multipart/form-data">
                 <div class="form-sign-up">
                     <label>Nombre </label>
-                    <input type="text" name="name" value="<?php echo !empty($_SESSION['user']) ? $_SESSION["user"]["name"] : ''; ?>">
+                    <input type="text" name="name" value="<?php echo !empty($_SESSION['user']) ? $_SESSION["user"]["nombre"] : ''; ?>">
                     <?php
                         if(isset($errorNombre)){
                             print "<p>$errorNombre</p>";
                         }
                     ?>
                     <label>Email </label>
-                    <input type="text" name="email">
+                    <input type="text" name="email" value="<?php echo !empty($_SESSION['user']) ? $_SESSION["user"]["email"] : ''; ?>">
                     <?php
                         if(isset($errorEmail)){
                             print "<p>$errorEmail</p>";
@@ -85,7 +85,7 @@ if(isset($_SESSION["insertarOK"])){
                         }
 
                         if(isset($insertarOK) && $insertarOK == true){
-                            print "<p>Usuario creado correctamente</p>";
+                            print "<p style='color:green;'>Usuario creado correctamente</p>";
                         }
 
                         unset($_SESSION["errorNombre"]);

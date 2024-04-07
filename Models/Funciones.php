@@ -30,21 +30,21 @@ function connectDb(){
     $password = $cfg["mysqlPassword"];
 
     try{
-        $tmp = new PDO($dsn_conbbdd,$usuario,$password);
+        $tmp = new PDO($dsn_conbbdd, $usuario, $password);
     } catch (PDOException $e) {
-        $tmp = new PDO($dsn_sinbbdd,$usuario,$password);
+        $tmp = new PDO($dsn_sinbbdd, $usuario, $password);
     } catch (PDOException $e) {
-        print "Error: No puede conectarse con la base de datos. {$e->getMessage()}\n";
-        //return null;
+        return null;
         exit;
     } finally {
-        $tmp->setAttribute(PDO::ATTR_ERRMODE,PDO:ERRMODE_SILENT);
-        $tmp->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED,true);
+        $tmp->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
+        $tmp->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
         return $tmp;
     }
 }
 
 function selectUsers(){
+    global $pdo, $cfg;
 
     $pdo = connectDb();
     $consulta = "SELECT * FROM $cfg[mysqlTable]";
@@ -67,7 +67,7 @@ function selectUsers(){
             print "<tr>\n";
             print "<td>$registro[Nombre]</td>\n";
             print "<td>$registro[Email]</td>\n";
-            print "<td>$registro[Contraseña]</td>\n";
+            print "<td>$registro[Password]</td>\n";
             print "<td>$registro[Foto]</td>\n";
             print "</tr>\n";
         }
@@ -78,25 +78,31 @@ function selectUsers(){
 }
 
 function insertDb($user){
+    global $pdo, $cfg;
 
     $pdo = connectDb();
 
-    $consulta = "INSERT INTO $cfg[mysqlTable] (Nombre,Email,Contraseña,Foto)
-                VALUES (:nombre,:email,:contraseña,:foto)";
-
-    $resultado = $pdo->prepare($consulta);
-
-    if(!$resultado){
+    if($pdo!=null){
+        $consulta = "INSERT INTO $cfg[mysqlTable] (Nombre, Email, Password, Foto)
+                    VALUES (:nombre, :email, :password, :foto)";
+    
+        $resultado = $pdo->prepare($consulta);
+    
+        if(!$resultado){
+            return false;
+        }elseif(!$resultado->execute([":nombre"=>$user->nombre,":email"=>$user->email,":password"=>$user->password,":foto"=>$user->foto])){
+            return false;
+        }else{
+            return true;
+        }
+    } else {
         return false;
-    }elseif(!$resultado->execute([":nombre"=>$user->nombre,":email"=>$user->email,":contraseña"=>$user->contraseña,":foto"=>$user->foto])){
-        return false;
-    }else{
-        return true;
     }
-
 }
 
 function deleteDb($id){
+    global $pdo, $cfg;
+
     $pdo = connectDb();
 
     $consulta = "DELETE FROM $cfg[mysqlTable] WHERE UserId = :id";
@@ -114,16 +120,17 @@ function deleteDb($id){
 
 //Actualizar sin terminar 
 function updateDb($user){
+    global $pdo, $cfg;
 
     $pdo = connectDb();
 
-    $consulta = "UPDATE $cfg[mysqlTable] SET Nombre=:nombre,Email=:email,Contraseña=:contraseña,Foto=:foto";
+    $consulta = "UPDATE $cfg[mysqlTable] SET Nombre=:nombre,Email=:email,Password=:password,Foto=:foto";
 
     $resultado = $pdo->prepare($consulta);
 
     if(!$resultado){
         return false;
-    }elseif(!$resultado->execute([":nombre"=>$user->nombre,":email"=>$user->email,":contraseña"=>$user->contraseña,":foto"=>$user->foto])){
+    }elseif(!$resultado->execute([":nombre"=>$user->nombre,":email"=>$user->email,":password"=>$user->contraseña,":foto"=>$user->foto])){
         return false;
     }else{
         return true;
