@@ -1769,10 +1769,6 @@ html {
   padding-bottom: 0.5rem;
 }
 
-.fixed {
-  position: fixed;
-}
-
 .z-\[1\] {
   z-index: 1;
 }
@@ -1781,12 +1777,20 @@ html {
   margin-top: 0.75rem;
 }
 
+.flex {
+  display: flex;
+}
+
 .table {
   display: table;
 }
 
 .grid {
   display: grid;
+}
+
+.h-screen {
+  height: 100vh;
 }
 
 .w-10 {
@@ -1813,20 +1817,28 @@ html {
   flex: none;
 }
 
+.flex-grow {
+  flex-grow: 1;
+}
+
 .grid-flow-col {
   grid-auto-flow: column;
+}
+
+.flex-col {
+  flex-direction: column;
 }
 
 .justify-between {
   justify-content: space-between;
 }
 
-.gap-4 {
-  gap: 1rem;
-}
-
 .gap-2 {
   gap: 0.5rem;
+}
+
+.gap-4 {
+  gap: 1rem;
 }
 
 .rounded {
@@ -1841,14 +1853,14 @@ html {
   border-radius: 9999px;
 }
 
-.bg-base-200 {
-  --tw-bg-opacity: 1;
-  background-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-bg-opacity)));
-}
-
 .bg-base-100 {
   --tw-bg-opacity: 1;
   background-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-bg-opacity)));
+}
+
+.bg-base-200 {
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-bg-opacity)));
 }
 
 .fill-current {

@@ -10,7 +10,7 @@
     <div class="nav">
         <ul>
             <li><a href=""><img class="img-casa" src="../Content/casa.svg" alt="icono-casa">Inicio</a></li>
-            <li><a href=""><img class="img-preguntas" src="../Content/preguntas.svg" alt="icono-preguntas">Preguntas</a></li>
+            <li><a href="../Views/Questions.php"><img class="img-preguntas" src="../Content/preguntas.svg" alt="icono-preguntas">Preguntas</a></li>
             <li><a href=""><img class="img-etiquetas" src="../Content/etiquetas.svg" alt="icono-etiquetas">Etiquetas</a></li>
             <li class="nav-usuarios"><a href=""><img class="img-etiquetas" src="../Content/usuarios.svg" alt="icono-usuarios">Usuarios</a></li>
             <li><a href=""><img class="img-respuestas" src="../Content/respuestas.svg" alt="icono-respuestas">Sin responder</a></li>
