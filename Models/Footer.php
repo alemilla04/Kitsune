@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../Content/output.css">
 </head>
-<body>
+<body class="h-screen w-screen">
     <footer class="footer footer-center p-10 bg-base-200 text-base-content rounded">
       <nav class="grid grid-flow-col gap-4">
         <a class="link link-hover">About us</a>
