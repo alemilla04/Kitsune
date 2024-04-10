@@ -8,7 +8,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../Content/output.css">
-    <link rel="stylesheet" href="../Content/style-alta.css">
+    <style>
+        :root {
+            font-size: 18px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body class="h-screen">
     <?php
@@ -25,13 +36,11 @@
         <div class="h-fit w-fit flex-grow text-lg">
             <h1>Explora nuestras preguntas</h1>
         </div>
-        <div class="text-white border bg-blue-800 rounded-[5px] h-fit w-fit p-2 text-xs">
-            <a href="MakeQuestion.php">Formular una pregunta</a>
+        <div class="text-white">
+            <a class="border bg-blue-500 rounded-[5px] p-2 text-xs" href="MakeQuestion.php">Formular una pregunta</a>
         </div>
         <div class="">
-            <div>
-
-            </div>
+            
         </div>
     </div>
     </main>
