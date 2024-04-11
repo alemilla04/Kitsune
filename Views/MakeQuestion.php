@@ -16,11 +16,14 @@
             padding: 0;
             box-sizing: border-box;
         }
+
+        .login-a:hover, .signup-a:hover {
+            color: rgb(29 78 216);
+        }
     </style>
-    <script src="../Scripts/modal.js"></script>
-    <script src="../Scripts/code-questions.js"></script>
+    <script src="../Scripts/CodeMakeQuestions.js"></script>
 </head>
-<body>
+<body class="h-screen w-[100%]">
     <?php
     require_once(__DIR__."/../Models/Header.php");
     ?>
@@ -40,7 +43,7 @@
         </div>
     </div>
     
-    <main class="h-screen w-[100%] grid grid-cols-[auto_1fr] grid-rows-[1fr]">
+    <main class="h-[100%] w-[100%] grid grid-cols-[auto_1fr] grid-rows-[1fr]">
         <?php
             require_once(__DIR__."/../Models/Nav.php");
         ?>
@@ -49,31 +52,65 @@
             <div class="flex border rounded-[10px] shadow-[0px_0px_5px_0px_rgb(128,128,128)] w-[100%]">
                 <form action="../Controller/QuestionController.php" class="p-4">
                     <div>
+                        <!-- TITULO -->
                         <div>
-                            <h1 class="mb-[10px]">Título</h1>
-                        </div>
+                            <h1 class="mb-[10px] font-bold">Título</h1>                        </div>
+
+                        <!-- MINI-EXPLICACION -->
                         <div>
                             <p class="mb-[10px]">Sé específico e imagina que estás haciendo la pregunta a otra persona</p>
                         </div>
+
+                        <!-- INPUT -->
                         <div>
                             <input class="w-[100%] border rounded-[5px]" type="text" name="titulo" placeholder="¿Cuál es tu pregunta?">
                         </div>
+
+                        <!-- CUERPO -->
                         <div>
-                            <h1 class="mt-[20px] mb-[10px]">Cuerpo</h1>
+                            <h1 class="mt-[20px] mb-[10px] font-bold">Cuerpo</h1>
                             <label class="form-control">
-                            <!-- <div class="label">
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </div> -->
-                            <textarea id="text-area" class="border rounded-[5px] textarea textarea-bordered h-24 w-[100%]" placeholder="Bio"></textarea>
+                            <textarea id="text-area" class="border rounded-[5px] textarea textarea-bordered h-24 w-[100%]" placeholder="Describe tu problema"></textarea>
                             <div class="label">
                                 <span class="label-text-alt">Escribir</span>
                                 <span id="span-borrar-todo">Borrar Todo</span>
                             </div>
+                            <div id="text-area-preview"></div>
                             </label>
                         </div>
+
+                        <!-- ETIQUETAS -->
+                        <div>
+                            <h1 class="mt-[20px] mb-[10px] font-bold">Etiquetas</h1>
+                            <div class="search-input-box">
+                                <input class="w-[100%] border rounded-[5px]" type="text" name="etiquetas" id="search-input" placeholder="p.j. comida, php, ...">
+                                <ul>
+                                    <li></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- ETIQUETAS -->
+                        <?php
+                        if(isset($_SESSION['usuarioObjeto'])){
+                            print "<input type='submit' value='Publicar pregunta' class='border bg-blue-500 text-white rounded-[5px] p-2 text-xs'>";
+                        } else {
+                            print "<br>";
+                            print "<h1 class='font-bold'><a href='SignUp.php' class='text-blue-500 signup-a'>Registrarse</a> o <a class='text-blue-500 login-a' href='Login.php'>iniciar sesión</a></h1>";
+                            print "<br>";
+                            print "<h1 class='font-bold'>Publicar como invitado</h1>";
+                            print "<br>";
+                            print "<div class='flex flex-col gap-4'>";
+                            print "<label class='font-bold text-xs'>Nombre</label>";
+                            print "<input class='border rounded-[5px]' type='text' name='guest_nombre' id=''>";
+                            print "<label class='font-bold text-xs'>Correo electrónico</label>";
+                            print "<input class='border rounded-[5px]' type='text' name='guest_email' id=''>";
+                            print "</div>";
+                            print "<br>";
+                            print "<input name='publicar-pregunta' type='submit' value='Publicar pregunta' class='border bg-blue-500 text-white rounded-[5px] p-2 text-xs hover:bg-blue-700'>";
+                        }
+
+                        ?>
                     </div>
                 </form>
             </div>

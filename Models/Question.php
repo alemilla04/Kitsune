@@ -2,9 +2,9 @@
 class Question {
     public $titulo = "";
     public $cuerpo = "";
-    public $etiquetas;
+    public $etiqueta = "";
 
     public function __construct() {
-        $this->etiquetas = array();
+        
     }
 }

@@ -39,7 +39,7 @@
         <div class="text-white">
             <a class="border bg-blue-500 rounded-[5px] p-2 text-xs" href="MakeQuestion.php">Formular una pregunta</a>
         </div>
-        <div class="">
+        <div class="questions">
             
         </div>
     </div>

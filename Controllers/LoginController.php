@@ -1,27 +1,32 @@
 <?php
-require_once(__DIR__ ."/../includes/funciones.php");
+require_once(__DIR__ . "/../Models/funciones.php");
 session_start();
+global $cfg, $pdo;
 
-// Verificar si se ha enviado el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener el valor del campo "usuario"
-    $user = recoge("user");
 
-    // Obtener el valor del campo "contraseña"
-    $pass = recoge("pass");
+    $usuario = $_POST["user"];
+    $contrasena = $_POST["pass"];
+    $pdo = connectDb();
 
-    // Ahora puedes usar $usuario y $contraseña para realizar cualquier acción que necesites
-    // Por ejemplo, podrías imprimirlos:
-    // Esto es provisional, hasta que no se haga una Base de datos
-    $usuario = "pepe";
-    $password = "1234";
+    $sql = "SELECT * FROM $cfg[mysqlTable] WHERE Email = :email";
+    $resultado = $pdo->prepare($sql);
+    $resultado->execute([':email' => $usuario]);
+    $usuario = $resultado->fetch();
 
-    if($user == $usuario && $pass == $password){
-        // Aqui se pondria la redirección a la web
-        var_dump($_POST);
-    }else{
-        $_SESSION["errorLogin"]="<p class='error'>El usuario o la contraseña no son correctos</p>";
-        header("location:../frontend/login.php");
+    if ($usuario) {
+        if (password_verify($contrasena, $usuario['Contraseña'])) {
+            $_SESSION["usuarioObjeto"] = $usuario;
+            header("Location:../Views/Questions.php");
+            exit;
+        } else {
+            $_SESSION["errorLogin"] = "Contraseña incorrecta.";
+            header("Location:../Views/Login.php");
+            exit;
+        }
+    } else {
+        $_SESSION["errorLogin"] = "Usuario no encontrado.";
+        header("Location:../Views/Login.php");
+        exit();
     }
 }
-?>

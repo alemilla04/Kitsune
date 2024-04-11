@@ -77,28 +77,34 @@ function selectUsers(){
     }
 }
 
-function insertDb($user){
+function insertDb($usuario){
     global $pdo, $cfg;
 
     $pdo = connectDb();
 
-    if($pdo!=null){
-        $consulta = "INSERT INTO $cfg[mysqlTable] (Nombre, Email, Password, Foto)
-                    VALUES (:nombre, :email, :password, :foto)";
-    
+    if($pdo != null){
+        $consulta = "INSERT INTO $cfg[mysqlTable] (Nombre, Email, Contraseña, Foto)
+                    VALUES (:nombre, :email, :contrasena, :foto)";
+
         $resultado = $pdo->prepare($consulta);
-    
+
         if(!$resultado){
             return false;
-        }elseif(!$resultado->execute([":nombre"=>$user->nombre,":email"=>$user->email,":password"=>$user->password,":foto"=>$user->foto])){
+        } elseif(!$resultado->execute([
+            ":nombre" => $usuario->nombre,
+            ":email" => $usuario->email,
+            ":contrasena" => $usuario->password,
+            ":foto" => $usuario->foto
+        ])){
             return false;
-        }else{
+        } else {
             return true;
         }
     } else {
         return false;
     }
 }
+
 
 function deleteDb($id){
     global $pdo, $cfg;
@@ -118,19 +124,18 @@ function deleteDb($id){
     }
 }
 
-//Actualizar sin terminar 
 function updateDb($user){
     global $pdo, $cfg;
 
     $pdo = connectDb();
 
-    $consulta = "UPDATE $cfg[mysqlTable] SET Nombre=:nombre,Email=:email,Password=:password,Foto=:foto";
+    $consulta = "UPDATE $cfg[mysqlTable] SET Nombre=:nombre,Email=:email,contraseña=:contraseña,Foto=:foto WHERE id = :id";
 
     $resultado = $pdo->prepare($consulta);
 
     if(!$resultado){
         return false;
-    }elseif(!$resultado->execute([":nombre"=>$user->nombre,":email"=>$user->email,":password"=>$user->contraseña,":foto"=>$user->foto])){
+    }elseif(!$resultado->execute([":nombre"=>$user->nombre,":email"=>$user->email,":contraseña"=>$user->contraseña,":foto"=>$user->foto])){
         return false;
     }else{
         return true;
