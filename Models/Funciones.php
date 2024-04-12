@@ -43,6 +43,7 @@ function connectDb(){
     }
 }
 
+// TABLA USUARIOS
 function selectUsers(){
     global $pdo, $cfg;
 
@@ -74,6 +75,23 @@ function selectUsers(){
 
         print "</table>";
         return true;
+    }
+}
+
+function selectUser($email) {
+    global $cfg;
+    global $pdo;
+
+    $consulta = "SELECT * FROM $cfg[mysqlTable] WHERE email = :email";
+
+    $resultado = $pdo->prepare($consulta);
+
+    if(!$resultado) {
+        return null;
+    } elseif(!$resultado->execute([":email"=>$email])) {
+        return null;
+    }else{
+        return $resultado->fetch(PDO::FETCH_ASSOC);
     }
 }
 
@@ -142,3 +160,61 @@ function updateDb($user){
     }
 
 }
+// TABLA PREGUNTAS
+function insertUsersQuestion($question) {
+    global $pdo;
+
+    $pdo = connectDb();
+
+    if($pdo != null){
+        $consulta = "INSERT INTO preguntas (Titulo, Cuerpo, Etiqueta, userID)
+                    VALUES (:titulo, :cuerpo, :etiqueta, :userID)";
+
+        $resultado = $pdo->prepare($consulta);
+
+        if(!$resultado){
+            return false;
+        } elseif(!$resultado->execute([
+            ":titulo" => $question->titulo,
+            ":cuerpo" => $question->cuerpo,
+            ":etiqueta" => $question->etiqueta,
+            ":userID" => $question->userID,
+        ])){
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        return false;
+    }
+}
+
+function insertGuestsQuestion($question, $nombre, $email) {
+    global $pdo;
+
+    $pdo = connectDb();
+
+    if($pdo != null){
+        $consulta = "INSERT INTO preguntas (Titulo, Cuerpo, Etiqueta, guest_name, guest_email)
+                    VALUES (:titulo, :cuerpo, :etiqueta, :guest_name, :guest_email)";
+
+        $resultado = $pdo->prepare($consulta);
+
+        if(!$resultado){
+            return false;
+        } elseif(!$resultado->execute([
+            ":titulo" => $question->titulo,
+            ":cuerpo" => $question->cuerpo,
+            ":etiqueta" => $question->etiqueta,
+            ":guest_name" => $nombre,
+            ":guest_email" => $email
+        ])){
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        return false;
+    }
+}
+

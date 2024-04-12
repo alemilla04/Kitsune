@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,7 +73,7 @@
                         <div>
                             <h1 class="mt-[20px] mb-[10px] font-bold">Cuerpo</h1>
                             <label class="form-control">
-                            <textarea id="text-area" class="border rounded-[5px] textarea textarea-bordered h-24 w-[100%]" placeholder="Describe tu problema"></textarea>
+                            <textarea name='cuerpo' id="text-area" class="border rounded-[5px] textarea textarea-bordered h-24 w-[100%]" placeholder="Describe tu problema"></textarea>
                             <div class="label">
                                 <span class="label-text-alt">Escribir</span>
                                 <span id="span-borrar-todo">Borrar Todo</span>
@@ -79,11 +82,11 @@
                             </label>
                         </div>
 
-                        <!-- ETIQUETAS -->
+                        <!-- ETIQUETA -->
                         <div>
-                            <h1 class="mt-[20px] mb-[10px] font-bold">Etiquetas</h1>
+                            <h1 class="mt-[20px] mb-[10px] font-bold">Etiqueta</h1>
                             <div class="search-input-box">
-                                <input class="w-[100%] border rounded-[5px]" type="text" name="etiquetas" id="search-input" placeholder="p.j. comida, php, ...">
+                                <input class="w-[100%] border rounded-[5px]" type="text" name="etiqueta" id="search-input" placeholder="p.j. comida, php, ...">
                                 <ul>
                                     <li></li>
                                 </ul>
@@ -93,6 +96,7 @@
                         <!-- ETIQUETAS -->
                         <?php
                         if(isset($_SESSION['usuarioObjeto'])){
+                            print "<br>";
                             print "<input type='submit' value='Publicar pregunta' class='border bg-blue-500 text-white rounded-[5px] p-2 text-xs'>";
                         } else {
                             print "<br>";
