@@ -4,7 +4,7 @@ class Question {
     public $cuerpo = "";
     public $etiqueta = "";
     public $userID = "";
-    public $guest_name = "";
+    public $guest_nombre = "";
     public $guest_email = "";
 
     public function __construct() {

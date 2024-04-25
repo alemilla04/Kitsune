@@ -53,7 +53,7 @@ session_start();
                 echo "  <div class='flex-1'>";
                 echo "      <input type='text' placeholder='Search' class='input input-bordered w-24 md:w-auto' />";
                 echo "  </div>";
-                echo "  <div class='flex-1 lg:flex lg:gap-4 sm:flex-col parte-derecha'>";
+                echo "  <div class='flex-1 lg:flex w-[100%] lg:gap-4 sm:flex-col parte-derecha'>";
                 echo "          <a href='../Views/SignUp.php'>Registrarse</a>";
                 echo "          <a href='../Views/Login.php'>Iniciar Sesión</a>";
                 echo "  </div>";

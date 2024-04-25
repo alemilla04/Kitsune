@@ -53,7 +53,7 @@
         <div class="m-5">
             <h1 class="mb-[20px] font-bold text-xl">Formular una pregunta</h1>
             <div class="flex border rounded-[10px] shadow-[0px_0px_5px_0px_rgb(128,128,128)] w-[100%]">
-                <form action="../Controller/QuestionController.php" class="p-4">
+                <form action="../Controller/MakeQuestionController.php" class="p-4">
                     <div>
                         <!-- TITULO -->
                         <div>

@@ -44,13 +44,41 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $insertarOK = insertUsersQuestion($question);
 
                 if(!$insertarOK){
-                    
+                    $_SESSION["insertarError"] = "Error al crear la pregunta";
+                    header("Location: ".APP_FOLDER."MakeQuestion.php");
+                    exit();
+                } else {
+                    $_SESSION["insertarOk"] = "Pregunta creada correctamente";
+                    header("Location: ".APP_FOLDER."Questions.php");
                 }
             }
 
         } else {
             $nombre = $_POST["guest_nombre"];
             $email = $_POST["guest_email"];
+
+            if($nombre != ""){
+                $_SESSION["question"]["guest_nombre"] = $nombre;
+                $question->guest_nombre = $nombre;
+            }
+
+            if($email != ""){
+                if(checkEmail($email)){
+                    $_SESSION["question"]["guest_email"] = $email;
+                    $question->guest_email = $email;
+                } else {
+                    $_SESSION["errorEmail"] = "Error en el formato del email";
+                    header("Location: ".APP_FOLDER."MakeQuestion.php");
+                    exit();
+                }
+            } else {
+                $_SESSION["errorEmail"] = "El email no puede estar vacío";
+                header("Location: ".APP_FOLDER."MakeQuestion.php");
+                exit();
+            }
+            
+            $insertGuestsQuestion = insertGuestsQuestion($question);
+
         }
 
     } else {

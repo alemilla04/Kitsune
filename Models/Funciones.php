@@ -189,7 +189,7 @@ function insertUsersQuestion($question) {
     }
 }
 
-function insertGuestsQuestion($question, $nombre, $email) {
+function insertGuestsQuestion($question) {
     global $pdo;
 
     $pdo = connectDb();
@@ -206,8 +206,8 @@ function insertGuestsQuestion($question, $nombre, $email) {
             ":titulo" => $question->titulo,
             ":cuerpo" => $question->cuerpo,
             ":etiqueta" => $question->etiqueta,
-            ":guest_name" => $nombre,
-            ":guest_email" => $email
+            ":guest_name" => $question->guest_nombre,
+            ":guest_email" => $question->guest_email
         ])){
             return false;
         } else {
