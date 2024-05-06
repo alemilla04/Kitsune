@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,11 +53,12 @@
         <div class="m-5">
             <h1 class="mb-[20px] font-bold text-xl">Formular una pregunta</h1>
             <div class="flex border rounded-[10px] shadow-[0px_0px_5px_0px_rgb(128,128,128)] w-[100%]">
-                <form action="../Controller/MakeQuestionController.php" class="p-4">
+                <form action="../Controllers/MakeQuestionController.php" class="p-4" method="POST">
                     <div>
                         <!-- TITULO -->
                         <div>
-                            <h1 class="mb-[10px] font-bold">Título</h1>                        </div>
+                            <h1 class="mb-[10px] font-bold">Título</h1>                        
+                        </div>
 
                         <!-- MINI-EXPLICACION -->
                         <div>
@@ -66,14 +67,14 @@
 
                         <!-- INPUT -->
                         <div>
-                            <input class="w-[100%] border rounded-[5px]" type="text" name="titulo" placeholder="¿Cuál es tu pregunta?">
+                            <input class="w-[100%] border rounded-[5px]" type="text" name="titulo" placeholder="¿Cuál es tu pregunta?" value="<?php echo !empty($_SESSION['question']) ? $_SESSION["question"]["titulo"] : '';?>">
                         </div>
 
                         <!-- CUERPO -->
                         <div>
                             <h1 class="mt-[20px] mb-[10px] font-bold">Cuerpo</h1>
                             <label class="form-control">
-                            <textarea name='cuerpo' id="text-area" class="border rounded-[5px] textarea textarea-bordered h-24 w-[100%]" placeholder="Describe tu problema"></textarea>
+                            <textarea name='cuerpo' id="text-area" class="border rounded-[5px] textarea textarea-bordered h-24 w-[100%]" placeholder="Describe tu problema" value="<?php echo !empty($_SESSION['question']) ? $_SESSION["question"]["cuerpo"] : '';?>"></textarea>
                             <div class="label">
                                 <span class="label-text-alt">Escribir</span>
                                 <span id="span-borrar-todo">Borrar Todo</span>
@@ -86,7 +87,7 @@
                         <div>
                             <h1 class="mt-[20px] mb-[10px] font-bold">Etiqueta</h1>
                             <div class="search-input-box">
-                                <input class="w-[100%] border rounded-[5px]" type="text" name="etiqueta" id="search-input" placeholder="p.j. comida, php, ...">
+                                <input class="w-[100%] border rounded-[5px]" type="text" name="etiqueta" id="search-input" placeholder="p.j. comida, php, ..." value="<?php echo !empty($_SESSION['question']) ? $_SESSION["question"]["etiqueta"] : '';?>">
                                 <ul>
                                     <li></li>
                                 </ul>
