@@ -7,16 +7,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $usuario = $_POST["user"];
     $contrasena = $_POST["pass"];
-    $pdo = connectDb();
+    // $pdo = connectDb();
 
-    $sql = "SELECT * FROM $cfg[mysqlTable] WHERE Email = :email";
-    $resultado = $pdo->prepare($sql);
-    $resultado->execute([':email' => $usuario]);
-    $usuario = $resultado->fetch();
+    // $sql = "SELECT * FROM $cfg[mysqlTable] WHERE Email = :email";
+    // $resultado = $pdo->prepare($sql);
+    // $resultado->execute([':email' => $usuario]);
+    // $usuario = $resultado->fetch();
+    $usuarioBBDD = selectUser($usuario);
 
-    if ($usuario) {
-        if (password_verify($contrasena, $usuario['Contraseña'])) {
-            $_SESSION["usuarioObjeto"] = $usuario;
+    if ($usuarioBBDD) {
+        if (password_verify($contrasena, $usuarioBBDD['Contraseña'])) {
+            $_SESSION["usuarioObjeto"] = $usuarioBBDD;
             header("Location:../Views/Questions.php");
             exit;
         } else {

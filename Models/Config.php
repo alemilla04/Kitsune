@@ -10,6 +10,11 @@ $cfg["mysqlHost"]     = "localhost";                        // Nombre de host
 $cfg["mysqlUser"]     = "root";           // Nombre de usuario
 $cfg["mysqlPassword"] = "";                                 // Contraseña de usuario
 $cfg["mysqlDatabase"] = "kitsune";           // Nombre de la base de datos
-$cfg["mysqlTable"] = "usuarios";
+$cfg["mysqlTable"] = array(
+    "table1" => "etiquetas",
+    "table2" => "experiencias",
+    "table3" => "preguntas",
+    "table4" => "usuarios"
+);
 
 define('APP_FOLDER', substr(__DIR__, strlen($_SERVER['DOCUMENT_ROOT'])));

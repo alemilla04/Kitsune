@@ -116,6 +116,16 @@ session_start();
                         }
 
                         ?>
+                        <?php 
+                        if(isset($_SESSION["insertarError"])){
+                            print "<p>$_SESSION[insertarError]</p>";
+                        }
+
+                        if(isset($_SESSION["errorEmail"])){
+                            print "<p>$_SESSION[errorEmail]</p>";
+                        }
+
+                        ?>
                     </div>
                 </form>
             </div>

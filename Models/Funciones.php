@@ -48,41 +48,54 @@ function selectUsers(){
     global $pdo, $cfg;
 
     $pdo = connectDb();
-    $consulta = "SELECT * FROM $cfg[mysqlTable]";
+    $consulta = "SELECT * FROM " . $cfg["mysqlTable"]["table4"];
 
     $resultado = $pdo->query($consulta);
 
-    if(!$resultado){
+    if (!$resultado) {
         return false;
-    }else{
-        print "    <table>\n";
-        print "      <thead>\n";
-        print "        <tr>\n";
-        print "          <th>Nombre</th>\n";
-        print "          <th>Email</th>\n";
-        print "          <th>Contraseña</th>\n";
-        print "          <th>Foto</th>\n";
-        print "        </tr>\n";
-        print "      </thead>\n";
-        foreach ($resultado as $registro) {
-            print "<tr>\n";
-            print "<td>$registro[Nombre]</td>\n";
-            print "<td>$registro[Email]</td>\n";
-            print "<td>$registro[Password]</td>\n";
-            print "<td>$registro[Foto]</td>\n";
-            print "</tr>\n";
+    } else {
+        $listaUsuarios = array();
+        
+        foreach($resultado as $registro){
+            $usuario = array("UserID" => $registro["UserID"], "Nombre" => $registro["Nombre"], "Email" => $registro["Email"], "Foto" => $registro["Foto"], "preguntas" => $registro["preguntas"], "respuestas" => $registro["respuestas"]);
+            array_push($listaUsuarios, $usuario);
         }
-
-        print "</table>";
-        return true;
+        return $listaUsuarios;
     }
+    // if(!$resultado){
+    //     return false;
+    // }else{
+    //     print "    <table>\n";
+    //     print "      <thead>\n";
+    //     print "        <tr>\n";
+    //     print "          <th>Nombre</th>\n";
+    //     print "          <th>Email</th>\n";
+    //     print "          <th>Contraseña</th>\n";
+    //     print "          <th>Foto</th>\n";
+    //     print "        </tr>\n";
+    //     print "      </thead>\n";
+    //     foreach ($resultado as $registro) {
+    //         print "<tr>\n";
+    //         print "<td>$registro[Nombre]</td>\n";
+    //         print "<td>$registro[Email]</td>\n";
+    //         print "<td>$registro[Password]</td>\n";
+    //         print "<td>$registro[Foto]</td>\n";
+    //         print "</tr>\n";
+    //     }
+
+    //     print "</table>";
+    //     return true;
+    // }
 }
 
 function selectUser($email) {
     global $cfg;
     global $pdo;
 
-    $consulta = "SELECT * FROM $cfg[mysqlTable] WHERE email = :email";
+    $pdo = connectDb();
+
+    $consulta = "SELECT * FROM " . $cfg["mysqlTable"]["table4"] ." WHERE email = :email";
 
     $resultado = $pdo->prepare($consulta);
 
@@ -95,13 +108,30 @@ function selectUser($email) {
     }
 }
 
+function selectExperiences(){
+    global $cfg, $pdo;
+    //Creamos el array
+    $experiences = [];
+
+    $pdo = connectDb();
+
+    $query = "SELECT * FROM " . $cfg["mysqlTable"]["table2"];
+
+    $resultado = $pdo->query($query);
+    foreach ($resultado as $row) {
+        $experiences[] = $row;
+    }
+
+    return $experiences;
+}
+
 function insertDb($usuario){
     global $pdo, $cfg;
 
     $pdo = connectDb();
 
     if($pdo != null){
-        $consulta = "INSERT INTO $cfg[mysqlTable] (Nombre, Email, Contraseña, Foto)
+        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table4"] ." (Nombre, Email, Contraseña, Foto)
                     VALUES (:nombre, :email, :contrasena, :foto)";
 
         $resultado = $pdo->prepare($consulta);
@@ -129,7 +159,7 @@ function deleteDb($id){
 
     $pdo = connectDb();
 
-    $consulta = "DELETE FROM $cfg[mysqlTable] WHERE UserId = :id";
+    $consulta = "DELETE FROM " . $cfg["mysqlTable"]["table4"] ." WHERE UserId = :id";
     
     $resultado = $pdo->prepare($consulta);
 
@@ -147,7 +177,7 @@ function updateDb($user){
 
     $pdo = connectDb();
 
-    $consulta = "UPDATE $cfg[mysqlTable] SET Nombre=:nombre,Email=:email,contraseña=:contraseña,Foto=:foto WHERE id = :id";
+    $consulta = "UPDATE " . $cfg["mysqlTable"]["table4"] ." SET Nombre=:nombre,Email=:email,contraseña=:contraseña,Foto=:foto WHERE id = :id";
 
     $resultado = $pdo->prepare($consulta);
 
@@ -162,13 +192,13 @@ function updateDb($user){
 }
 // TABLA PREGUNTAS
 function insertUsersQuestion($question) {
-    global $pdo;
+    global $pdo,$cfg;
 
     $pdo = connectDb();
 
     if($pdo != null){
-        $consulta = "INSERT INTO preguntas (Titulo, Cuerpo, Etiqueta, userID)
-                    VALUES (:titulo, :cuerpo, :etiqueta, :userID)";
+        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table3"] ." (Titulo, Cuerpo, Etiqueta, userID, guest_name, guest_email)
+                    VALUES (:titulo, :cuerpo, :etiqueta, :userID, :guest_name, :guest_email)";
 
         $resultado = $pdo->prepare($consulta);
 
@@ -179,6 +209,8 @@ function insertUsersQuestion($question) {
             ":cuerpo" => $question->cuerpo,
             ":etiqueta" => $question->etiqueta,
             ":userID" => $question->userID,
+            ":guest_name" => null,
+            ":guest_email" => null
         ])){
             return false;
         } else {
@@ -190,12 +222,12 @@ function insertUsersQuestion($question) {
 }
 
 function insertGuestsQuestion($question) {
-    global $pdo;
+    global $pdo,$cfg;
 
     $pdo = connectDb();
 
     if($pdo != null){
-        $consulta = "INSERT INTO preguntas (Titulo, Cuerpo, Etiqueta, guest_name, guest_email)
+        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table3"] ." (Titulo, Cuerpo, Etiqueta, userID, guest_name, guest_email)
                     VALUES (:titulo, :cuerpo, :etiqueta, :guest_name, :guest_email)";
 
         $resultado = $pdo->prepare($consulta);
@@ -206,6 +238,7 @@ function insertGuestsQuestion($question) {
             ":titulo" => $question->titulo,
             ":cuerpo" => $question->cuerpo,
             ":etiqueta" => $question->etiqueta,
+            ":userID" => null,
             ":guest_name" => $question->guest_nombre,
             ":guest_email" => $question->guest_email
         ])){
