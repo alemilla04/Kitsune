@@ -6,9 +6,11 @@ USE Kitsune;
 
 -- Crear la tabla para almacenar información de usuarios
 CREATE TABLE IF NOT EXISTS Usuarios (
-    UserID INT PRIMARY KEY AUTO_INCREMENT, -- ID único para cada usuario
-    Nombre VARCHAR(100) NOT NULL, -- Nombre del usuario
-    Email VARCHAR(100) UNIQUE NOT NULL, -- Email único para cada usuario
-    Contraseña VARCHAR(100) UNIQUE NOT NULL, -- Email único para cada usuario
-    Foto VARCHAR(100) NOT NULL
+    userID INT PRIMARY KEY AUTO_INCREMENT, -- ID único para cada usuario
+    nombre VARCHAR(100) NOT NULL, -- Nombre del usuario
+    email VARCHAR(100) UNIQUE NOT NULL, -- Email único para cada usuario
+    contraseña VARCHAR(100) UNIQUE NOT NULL, -- Email único para cada usuario
+    foto VARCHAR(100) NOT NULL,
+    preguntas INT DEFAULT 
+    respuestas
 );

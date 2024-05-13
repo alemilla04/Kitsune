@@ -1,5 +1,5 @@
 CREATE TABLE etiquetas (
-	Id int PRIMARY KEY AUTO_INCREMENT,
-	Nombre varchar(255),
-	Categoria varchar(255)
+	id int PRIMARY KEY AUTO_INCREMENT,
+	nombre varchar(255),
+	categoria varchar(255)
 );
