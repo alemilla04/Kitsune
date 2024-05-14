@@ -58,7 +58,7 @@ function selectUsers(){
         $listaUsuarios = array();
         
         foreach($resultado as $registro){
-            $usuario = array("UserID" => $registro["UserID"], "Nombre" => $registro["Nombre"], "Email" => $registro["Email"], "Foto" => $registro["Foto"], "preguntas" => $registro["preguntas"], "respuestas" => $registro["respuestas"]);
+            $usuario = array("userID" => $registro["userID"], "nombre" => $registro["nombre"], "email" => $registro["email"], "foto" => $registro["foto"], "preguntas" => $registro["preguntas"], "respuestas" => $registro["respuestas"]);
             array_push($listaUsuarios, $usuario);
         }
         return $listaUsuarios;
@@ -131,7 +131,7 @@ function insertDb($usuario){
     $pdo = connectDb();
 
     if($pdo != null){
-        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table4"] ." (Nombre, Email, Contraseña, Foto)
+        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table4"] ." (nombre, email, contraseña, foto)
                     VALUES (:nombre, :email, :contrasena, :foto)";
 
         $resultado = $pdo->prepare($consulta);
@@ -197,8 +197,8 @@ function insertUsersQuestion($question) {
     $pdo = connectDb();
 
     if($pdo != null){
-        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table3"] ." (Titulo, Cuerpo, Etiqueta, userID, guest_name, guest_email)
-                    VALUES (:titulo, :cuerpo, :etiqueta, :userID, :guest_name, :guest_email)";
+        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table3"] ." (titulo, cuerpo, etiqueta, userID)
+                    VALUES (:titulo, :cuerpo, :etiqueta, :userID)";
 
         $resultado = $pdo->prepare($consulta);
 
@@ -209,8 +209,6 @@ function insertUsersQuestion($question) {
             ":cuerpo" => $question->cuerpo,
             ":etiqueta" => $question->etiqueta,
             ":userID" => $question->userID,
-            ":guest_name" => null,
-            ":guest_email" => null
         ])){
             return false;
         } else {
@@ -227,7 +225,7 @@ function insertGuestsQuestion($question) {
     $pdo = connectDb();
 
     if($pdo != null){
-        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table3"] ." (Titulo, Cuerpo, Etiqueta, userID, guest_name, guest_email)
+        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table3"] ." (titulo, cuerpo, etiqueta, guest_name, guest_email)
                     VALUES (:titulo, :cuerpo, :etiqueta, :guest_name, :guest_email)";
 
         $resultado = $pdo->prepare($consulta);
@@ -238,7 +236,6 @@ function insertGuestsQuestion($question) {
             ":titulo" => $question->titulo,
             ":cuerpo" => $question->cuerpo,
             ":etiqueta" => $question->etiqueta,
-            ":userID" => null,
             ":guest_name" => $question->guest_nombre,
             ":guest_email" => $question->guest_email
         ])){

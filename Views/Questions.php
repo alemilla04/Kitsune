@@ -1,5 +1,13 @@
 <?php
 session_start();
+
+if(isset($_SESSION['insertarOk'])){
+    $insertarOk = $_SESSION['insertarOk'];
+}
+
+if(isset($_SESSION['insertarError'])){
+    $insertarError = $_SESSION['insertarError'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,9 +48,20 @@ session_start();
             <a class="border bg-blue-500 rounded-[5px] p-2 text-xs" href="MakeQuestion.php">Formular una pregunta</a>
         </div>
         <div class="questions">
-            
         </div>
     </div>
+    <?php
+    if(isset($insertarOk)){
+        print "<p>$insertarOk</p>";
+    }
+
+    if(isset($insertarError)){
+        print "<p>$insertarError</p>";
+    }
+
+    unset($_SESSION["insertarOk"]);
+    unset($_SESSION["insertarError"]);
+    ?>
     </main>
 
     <?php

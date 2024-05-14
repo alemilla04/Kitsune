@@ -53,6 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 } else {
                     $_SESSION["insertarOk"] = "Pregunta creada correctamente";
                     header("Location: ".APP_FOLDER."/../Views/Questions.php");
+                    unset($_SESSION['question']);
                     exit();
                 }
             }
