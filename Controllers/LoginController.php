@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuarioBBDD = selectUser($usuario);
 
     if ($usuarioBBDD) {
-        if (password_verify($contrasena, $usuarioBBDD['Contraseña'])) {
+        if (password_verify($contrasena, $usuarioBBDD['contraseña'])) {
             $_SESSION["usuarioObjeto"] = $usuarioBBDD;
             header("Location:../Views/Questions.php");
             exit;

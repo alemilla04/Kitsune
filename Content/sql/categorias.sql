@@ -5,9 +5,4 @@ USE Kitsune;
 CREATE TABLE IF NOT EXISTS Categorias(
     categoriaID INT PRIMARY KEY AUTO_INCREMENT, -- ID único para cada pregunta
     nombre VARCHAR(100) NOT NULL, -- Titulo de la pregunta
-    etiqueta VARCHAR(100) NOT NULL,
-    userID int,
-    FOREIGN KEY (userID) REFERENCES usuarios(userID),
-    guest_nombre VARCHAR(100),
-    guest_email VARCHAR(100)
 );

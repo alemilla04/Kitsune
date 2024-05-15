@@ -7,9 +7,18 @@
     <title>Document</title>
     <link rel="stylesheet" href="../Content/output.css">
     <style>
-        .parte-derecha a:hover {
-            font-size: 20px;
-            font-weight: bold;
+        .contenedor {
+            border: blue 1px solid;
+        }
+
+        .menu-derecha li a:hover{
+            background-color: grey;
+        }
+
+        .menu-derecha {
+            display: flex;
+            justify-content: space-between;
+            border: red 1px solid;
         }
     </style>
 </head>
@@ -18,7 +27,7 @@
     <div class='navbar bg-base-200 flex-1'>
         <?php
         if (isset($_SESSION['usuarioObjeto'])) {
-            $foto_perfil = $_SESSION["usuarioObjeto"]["Foto"];
+            $foto_perfil = $_SESSION["usuarioObjeto"]["foto"];
             echo "<div class='flex-1'>";
             echo "  <img class='w-[100px]' src='../Content/kit-removebg.png' alt='foto de perfil'>";
             echo "  <a class='btn btn-ghost text-xl' href='../Views/Home.php'>Kitsune</a>";
@@ -41,12 +50,12 @@
             echo "  </ul>";
             echo " </div>";
         } else {
-            echo "<div class='flex-1'>";
+            echo "<div class='flex-grow'>";
             echo "  <img class='w-[100px]' src='../Content/kit-removebg.png' alt='foto de Kitsune'>";
             echo "  <a class='btn btn-ghost text-xl' href='../Views/Home.php'>Kitsune</a>";
             echo "</div>";
-            echo "<div class='flex-none'>";
-            echo "  <ul class='menu menu-horizontal px-1'>";
+            echo "<div class='contenedor flex-grow'>";
+            echo "  <ul class='md:flex-grow md:flex '>";
             echo "   <li><a href='../Views/SignUp.php'>Registrarse</a></li>";
             echo "   <li><a href='../Views/Login.php'>Iniciar Sesión</a></li>";
             echo "  </ul>";
