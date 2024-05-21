@@ -132,7 +132,7 @@ function insertUser($usuario){
 
     if($pdo != null){
         $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table4"] ." (nombre, email, contraseña, foto)
-                    VALUES (:nombre, :email, :contrasena, :foto)";
+                    VALUES (:nombre, :email, :contraseña, :foto)";
 
         $resultado = $pdo->prepare($consulta);
 
@@ -141,7 +141,7 @@ function insertUser($usuario){
         } elseif(!$resultado->execute([
             ":nombre" => $usuario->nombre,
             ":email" => $usuario->email,
-            ":contrasena" => $usuario->password,
+            ":contraseña" => $usuario->password,
             ":foto" => $usuario->foto
         ])){
             return false;
@@ -177,14 +177,13 @@ function updateUser($user){
 
     $pdo = connectDb();
 
-    $consulta = "UPDATE " . $cfg["mysqlTable"]["table4"] ." SET nombre = :nombre, email = :email, contraseña = :contraseña, foto = :foto, preguntas = :preguntas, respuestas = :respuestas WHERE userID = :userID";
+    $consulta = "UPDATE " . $cfg["mysqlTable"]["table4"] ." SET nombre = :nombre, email = :email, foto = :foto, preguntas = :preguntas, respuestas = :respuestas WHERE userID = :userID";
 
     $resultado = $pdo->prepare($consulta);
 
     $params = [
         ":nombre" => $user["nombre"],
         ":email" => $user["email"],
-        ":contraseña" => $user["contraseña"],
         ":foto" => $user["foto"],
         ":preguntas" => $user["preguntas"],
         ":respuestas" => $user["respuestas"],
@@ -200,6 +199,10 @@ function updateUser($user){
     }else{
         return true;
     }
+
+}
+
+function updatePasswordUser($password){
 
 }
 // TABLA PREGUNTAS
@@ -237,7 +240,7 @@ function insertGuestsQuestion($question) {
     $pdo = connectDb();
 
     if($pdo != null){
-        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table3"] ." (titulo, cuerpo, etiqueta, guest_name, guest_email)
+        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table3"] ." (titulo, cuerpo, etiqueta, guest_nombre, guest_email)
                     VALUES (:titulo, :cuerpo, :etiqueta, :guest_name, :guest_email)";
 
         $resultado = $pdo->prepare($consulta);

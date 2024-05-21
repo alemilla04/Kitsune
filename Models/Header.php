@@ -8,17 +8,28 @@
     <link rel="stylesheet" href="../Content/output.css">
     <style>
         .contenedor {
-            border: blue 1px solid;
+            gap: 200px;
+            flex: 1;
+            justify-content: center;
         }
 
-        .menu-derecha li a:hover{
-            background-color: grey;
+        .contenedor li a:hover {
+            font-size: 20px; 
+            background-color: #abadad;
+            border-radius: 4px;
+            padding: 10px;
         }
 
-        .menu-derecha {
-            display: flex;
-            justify-content: space-between;
-            border: red 1px solid;
+        li{
+            list-style: none;
+        }
+
+        @media (min-width: 375px) and (max-width: 667px){
+            .contenedor {
+                gap: 5px;
+                display: flex;
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -36,7 +47,7 @@
             echo "<div class='dropdown dropdown-end'>";
             echo "  <div tabindex='0' role='button' class='btn btn-ghost btn-circle avatar'>";
             echo "      <div class='w-10 rounded-full'>";
-            echo "      <img alt='Tailwind CSS Navbar component' src='../Content/profile_pics/{$foto_perfil}' />";
+            echo "      <img alt='Foto de perfil' src='../Content/profile_pics/{$foto_perfil}' />";
             echo "      </div>";
             echo "  </div>";
             echo "  <ul tabindex='0' class='mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52'>";
@@ -54,16 +65,10 @@
             echo "  <img class='w-[100px]' src='../Content/kit-removebg.png' alt='foto de Kitsune'>";
             echo "  <a class='btn btn-ghost text-xl' href='../Views/Home.php'>Kitsune</a>";
             echo "</div>";
-            echo "<div class='contenedor flex-grow'>";
-            echo "  <ul class='md:flex-grow md:flex '>";
+            echo "<div class='contenedor'>";
             echo "   <li><a href='../Views/SignUp.php'>Registrarse</a></li>";
             echo "   <li><a href='../Views/Login.php'>Iniciar Sesión</a></li>";
-            echo "  </ul>";
             echo "</div>";
-            // echo "<div class='flex-1 w-[100%]'>";
-            // echo "          <a href='../Views/SignUp.php' class=''>Registrarse</a>";
-            // echo "          <a href='../Views/Login.php' class=''>Iniciar Sesión</a>";
-            // echo "</div>";
         }
         ?>
     </div>

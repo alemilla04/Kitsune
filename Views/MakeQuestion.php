@@ -46,7 +46,7 @@ session_start();
         </div>
     </div>
     
-    <main class="h-[100%] w-[100%] grid grid-cols-[auto_1fr] grid-rows-[1fr]">
+    <main class="h-[100%] w-[100%] grid grid-cols-[auto_1fr] grid-rows-[1fr_1fr]">
         <?php
             require_once(__DIR__."/../Models/Nav.php");
         ?>
@@ -87,7 +87,7 @@ session_start();
                         <div>
                             <h1 class="mt-[20px] mb-[10px] font-bold">Etiqueta</h1>
                             <div class="search-input-box">
-                                <input class="w-[100%] border rounded-[5px]" type="text" name="etiqueta" id="search-input" placeholder="p.j. comida, php, ..." value="<?php echo !empty($_SESSION['question']) ? $_SESSION["question"]["etiqueta"] : '';?>">
+                                <input class="w-[100%] border rounded-[5px]" type="text" name="etiqueta" id="search-input" placeholde="p.j. comida, php, ..." value="<?php echo !empty($_SESSION['question']) ? $_SESSION["question"]["etiqueta"] : '';?>">
                                 <ul>
                                     <li></li>
                                 </ul>
@@ -107,9 +107,9 @@ session_start();
                             print "<br>";
                             print "<div class='flex flex-col gap-4'>";
                             print "<label class='font-bold text-xs'>Nombre</label>";
-                            print "<input class='border rounded-[5px]' type='text' name='guest_nombre' id=''>";
+                            print "<input class='border rounded-[5px]' type='text' name='guest_nombre' value=''>";
                             print "<label class='font-bold text-xs'>Correo electrónico</label>";
-                            print "<input class='border rounded-[5px]' type='text' name='guest_email' id=''>";
+                            print "<input class='border rounded-[5px]' type='text' name='guest_email' id='' value=''>";
                             print "</div>";
                             print "<br>";
                             print "<input name='publicar-pregunta' type='submit' value='Publicar pregunta' class='border bg-blue-500 text-white rounded-[5px] p-2 text-xs hover:bg-blue-700'>";
@@ -124,6 +124,14 @@ session_start();
                         if(isset($_SESSION["errorEmail"])){
                             print "<p>$_SESSION[errorEmail]</p>";
                         }
+
+                        if(isset($_SESSION["insertarErrorGuest"])){
+                            print "<p>$_SESSION[insertarErrorGuest]</p>";
+                        }
+
+                        unset($_SESSION["insertarError"]);
+                        unset($_SESSION["errorEmail"]);
+                        unset($_SESSION["insertarErrorGuest"]);
 
                         ?>
                     </div>

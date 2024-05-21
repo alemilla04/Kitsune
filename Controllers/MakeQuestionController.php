@@ -53,9 +53,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 } else {
                     $_SESSION["insertarOk"] = "Pregunta creada correctamente";
                     $usuario['preguntas'] = $usuario['preguntas'] + 1; 
-                    $_SESSION['usuarioMakeQuestion'] = $usuario;
-                    $updateOK = updateUser($usuario);
-                    $_SESSION["update"] = $updateOK;
+                    
+                    updateUser($usuario);
                     
                     // if(!$updateOK){
                     //     $_SESSION['updateError'] = "no se ha podido actualizar";    
@@ -93,6 +92,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
             
             $insertGuestsQuestion = insertGuestsQuestion($question);
+
+            if(!$insertGuestsQuestion) {
+                $_SESSION["insertarErrorGuest"] = "Error al crear la pregunta";
+                header("Location: ".APP_FOLDER."/../Views/MakeQuestion.php");
+                exit();
+            } else {
+                $_SESSION["insertarOk"] = "Pregunta creada correctamente";
+                header("Location: ".APP_FOLDER."/../Views/Questions.php");
+                unset($_SESSION['question']);
+                exit();
+            }
 
         }
 
