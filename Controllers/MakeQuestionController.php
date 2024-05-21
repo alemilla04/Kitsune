@@ -41,17 +41,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $question->etiqueta = $etiqueta;
         
         if(isset($_SESSION["usuarioObjeto"])){
-            $usuario = selectUser($_SESSION["usuarioObjeto"]["Email"]);
+            $usuario = selectUser($_SESSION["usuarioObjeto"]["email"]);
             if($usuario!=null){
-                $question->userID = $usuario['UserID'];
+                $question->userID = $usuario['userID'];
                 $insertarOK = insertUsersQuestion($question);
-
+                
                 if(!$insertarOK){
                     $_SESSION["insertarError"] = "Error al crear la pregunta";
                     header("Location: ".APP_FOLDER."/../Views/MakeQuestion.php");
                     exit();
                 } else {
                     $_SESSION["insertarOk"] = "Pregunta creada correctamente";
+                    $usuario['preguntas'] = $usuario['preguntas'] + 1; 
+                    $_SESSION['usuarioMakeQuestion'] = $usuario;
+                    $updateOK = updateUser($usuario);
+                    $_SESSION["update"] = $updateOK;
+                    
+                    // if(!$updateOK){
+                    //     $_SESSION['updateError'] = "no se ha podido actualizar";    
+                    // } else {
+                    //     $_SESSION['updateOK'] = "se pudo actualizar";
+                    // }
                     header("Location: ".APP_FOLDER."/../Views/Questions.php");
                     unset($_SESSION['question']);
                     exit();
@@ -85,7 +95,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $insertGuestsQuestion = insertGuestsQuestion($question);
 
         }
-        header("Location: ".APP_FOLDER."/../Views/Home.php");
 
     } else {
         header("Location: ".APP_FOLDER."/../Views/MakeQuestion.php");

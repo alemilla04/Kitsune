@@ -1,13 +1,22 @@
 <?php
 session_start();
 
+print "<pre>";
+print_r($_SESSION["usuarioMakeQuestion"]);
+print "</pre>";
+
 if(isset($_SESSION['insertarOk'])){
     $insertarOk = $_SESSION['insertarOk'];
 }
 
-if(isset($_SESSION['insertarError'])){
-    $insertarError = $_SESSION['insertarError'];
+if(isset($_SESSION['updateOK'])){
+    $updateOK = $_SESSION['updateOK'];
 }
+
+if(isset($_SESSION['update'])){
+    $update = $_SESSION['update'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,12 +64,17 @@ if(isset($_SESSION['insertarError'])){
         print "<p>$insertarOk</p>";
     }
 
-    if(isset($insertarError)){
-        print "<p>$insertarError</p>";
+    if(isset($updateOK)){
+        print "<p>$updateOK</p>";
+    }
+
+    if(isset($update)){
+        print "<p>$update</p>";
     }
 
     unset($_SESSION["insertarOk"]);
-    unset($_SESSION["insertarError"]);
+    unset($_SESSION["updateOK"]);
+    unset($_SESSION["updateError"]);
     ?>
     </main>
 

@@ -2,9 +2,9 @@
 require_once(__DIR__ . "/config.php");
 
 function checkEmail($email) {
-    if(!str_contains($email, '@') && 
-    !str_contains($email, '.') && 
-    strrpos($email, '@')>strrpos($email, '.')){
+    if(!str_contains($email, "@") && 
+    !str_contains($email, ".") && 
+    strrpos($email, "@")>strrpos($email, ".")){
         return false;
     }
 
@@ -125,7 +125,7 @@ function selectExperiences(){
     return $experiences;
 }
 
-function insertDb($usuario){
+function insertUser($usuario){
     global $pdo, $cfg;
 
     $pdo = connectDb();
@@ -154,12 +154,12 @@ function insertDb($usuario){
 }
 
 
-function deleteDb($id){
+function deleteUser($id){
     global $pdo, $cfg;
 
     $pdo = connectDb();
 
-    $consulta = "DELETE FROM " . $cfg["mysqlTable"]["table4"] ." WHERE UserId = :id";
+    $consulta = "DELETE FROM " . $cfg["mysqlTable"]["table4"] ." WHERE userID = :id";
     
     $resultado = $pdo->prepare($consulta);
 
@@ -172,19 +172,31 @@ function deleteDb($id){
     }
 }
 
-function updateDb($user){
+function updateUser($user){
     global $pdo, $cfg;
 
     $pdo = connectDb();
 
-    $consulta = "UPDATE " . $cfg["mysqlTable"]["table4"] ." SET Nombre=:nombre,Email=:email,contraseña=:contraseña,Foto=:foto WHERE id = :id";
+    $consulta = "UPDATE " . $cfg["mysqlTable"]["table4"] ." SET nombre = :nombre, email = :email, contraseña = :contraseña, foto = :foto, preguntas = :preguntas, respuestas = :respuestas WHERE userID = :userID";
 
     $resultado = $pdo->prepare($consulta);
 
+    $params = [
+        ":nombre" => $user["nombre"],
+        ":email" => $user["email"],
+        ":contraseña" => $user["contraseña"],
+        ":foto" => $user["foto"],
+        ":preguntas" => $user["preguntas"],
+        ":respuestas" => $user["respuestas"],
+        ":userID" => $user["userID"]
+    ];
+
     if(!$resultado){
-        return false;
-    }elseif(!$resultado->execute([":nombre"=>$user->nombre,":email"=>$user->email,":contraseña"=>$user->contraseña,":foto"=>$user->foto])){
-        return false;
+        $respuesta = "error en resultado.";
+        return $respuesta;
+    }elseif(!$resultado->execute($params)){
+        $respuesta = "Error al ejecutar la consulta: " . implode(":", $resultado->errorInfo());
+        return $respuesta;
     }else{
         return true;
     }
@@ -247,4 +259,3 @@ function insertGuestsQuestion($question) {
         return false;
     }
 }
-

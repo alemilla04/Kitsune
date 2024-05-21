@@ -71,7 +71,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             $user->foto = $nombreFichero;
         }
 
-        $insertarOK = insertDb($user);
+        $insertarOK = insertUser($user);
 
         if(!$insertarOK) {
             $_SESSION["errorInsertar"] = "Error al registrar usuario";
