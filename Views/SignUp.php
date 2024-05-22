@@ -33,55 +33,67 @@ if(isset($_SESSION["insertarOK"])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../Content/style-alta.css">
+    <style>
+        :root {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
-<body>
+<body class='h-screen w-[100%]'>
+    <header>
     <?php
     require_once(__DIR__."/../Models/Header.php");
     ?>
-    <main class="signup-main">
+    </header>
+    <main class="signup-main min-h-screen w-[100%] grid grid-cols-[auto_1fr] grid-rows-[1fr]">
         <?php
         require_once(__DIR__."/../Models/Nav.php");
         ?>
-        <div class="caja-sign-up">
-            <h3>Crea tu cuenta de Kitsune.<br> Es gratis y solo te toma un minuto.</h3>
+        <div class="m-[20px_auto]">
+            <h3 class='font-normal'>Crea tu cuenta de Kitsune.<br> Es gratis y solo te toma un minuto.</h3>
             <form action="../Controllers/SignUpController.php" method="POST" enctype="multipart/form-data">
-                <div class="form-sign-up">
-                    <label>Nombre </label>
-                    <input type="text" name="name" value="<?php echo !empty($_SESSION['user']) ? $_SESSION["user"]["nombre"] : ''; ?>">
+                <div class="form-sign-up flex flex-col mt-[2rem] shadow-[0px_0px_7px_0px_rgb(128,128,128)] rounded-[3%] p-[1.5rem]">
+                    <label class='font-bold'>Nombre </label>
+                    <input class='mt-[5px] mb-[20px] rounded-[7px] p-[7px] border-[1px] border-[#BABFC5]' type="text" name="name" value="<?php echo !empty($_SESSION['user']) ? $_SESSION["user"]["nombre"] : ''; ?>">
                     <?php
                         if(isset($errorNombre)){
                             print "<p>$errorNombre</p>";
                         }
                     ?>
-                    <label>Email </label>
-                    <input type="text" name="email" value="<?php echo !empty($_SESSION['user']) ? $_SESSION["user"]["email"] : ''; ?>">
+                    <label class='font-bold'>Email </label>
+                    <input class='border-[1px] border-[#BABFC5] mt-[5px] mb-[20px] rounded-[7px] p-[7px]' type="text" name="email" value="<?php echo !empty($_SESSION['user']) ? $_SESSION["user"]["email"] : ''; ?>">
                     <?php
                         if(isset($errorEmail)){
                             print "<p>$errorEmail</p>";
                         }
                     ?>
-                    <label>Contraseña </label>
-                    <input type="password" name="password">
-                    <span>Must contain 8+ characters, including <br>at least 1 letter and 1 number.</span>
+                    <label class='font-bold'>Contraseña </label>
+                    <input class='border-[1px] border-[#BABFC5] mt-[5px] mb-[20px] rounded-[7px] p-[7px]' type="password" name="password">
+                    <span class="text-[#3b3b3b] mb-[30px]">Must contain 8+ characters, including <br>at least 1 letter and 1 number.</span>
                     <?php
                         if(isset($errorPassword)){
                             print "<p>$errorPassword</p>";
                         }
                     ?>
-                    <label>Repite contraseña </label>
-                    <input type="password" name="password2">
+                    <label class='font-bold'>Repite contraseña </label>
+                    <input class='border-[1px] border-[#BABFC5] mt-[5px] mb-[20px] rounded-[7px] p-[7px]' type="password" name="password2">
                     <?php
                         if(isset($errorRepitePassword)){
                             print "<p>$errorRepitePassword</p>";
                         }
                     ?>
-                    <label>Foto de perfil </label>
-                    <input type="file" name="picture">
-                    <input type="submit" value="Registrarse">
+                    <label class='font-bold'>Foto de perfil </label>
+                    <input class='mt-[5px] mb-[20px] rounded-[7px] p-[7px]' type="file" name="picture">
+                    <input class='bg-[#1B75D0] border-[1px] border-[#1B75D0] text-white mt-[5px] mb-[20px] rounded-[7px] p-[7px]' type="submit" value="Registrarse">
                     <?php
                         if(isset($errorInsertar)){
-                            print "<p>$errorInsertar</p>";
+                            print "<p class='red mb-[30px]'>$errorInsertar</p>";
                         }
 
                         if(isset($insertarOK) && $insertarOK == true){
@@ -99,8 +111,10 @@ if(isset($_SESSION["insertarOK"])){
             </form>
         </div>
     </main>
+    <footer>
     <?php
     require_once(__DIR__."/../Models/Footer.php");
     ?>
+    </footer>
 </body>
 </html>

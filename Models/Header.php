@@ -7,15 +7,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="../Content/output.css">
     <style>
-        .contenedor {
-            gap: 200px;
-            flex: 1;
-            justify-content: center;
-        }
-
         .contenedor li a:hover {
-            font-size: 20px; 
-            background-color: #abadad;
+            font-size: 18px; 
+            background-color: #C8CACD;
             border-radius: 4px;
             padding: 10px;
         }
@@ -24,11 +18,27 @@
             list-style: none;
         }
 
-        @media (min-width: 375px) and (max-width: 667px){
+        @media (min-width: 375px){
             .contenedor {
-                gap: 5px;
+                gap: 10px;
                 display: flex;
                 flex-direction: column;
+            }
+        }
+
+        @media (min-width: 760px){
+            .contenedor {
+                gap: 60px;
+                display: flex;
+                flex-direction: row;
+            }
+        }
+
+        @media (min-width: 1000px){
+            .contenedor {
+                gap: 180px;
+                flex: 1;
+                justify-content: center;
             }
         }
     </style>

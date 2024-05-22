@@ -27,9 +27,11 @@ session_start();
     <script src="../Scripts/CodeMakeQuestions.js"></script>
 </head>
 <body class="h-screen w-[100%]">
+    <header>
     <?php
     require_once(__DIR__."/../Models/Header.php");
     ?>
+    </header>
     <!-- Ventana modal-->
     <div class="bg-gray-600 bg-opacity-60 fixed z-10 top-0 right-0 left-0 bottom-0 flex" id="ventana_modal">
         <div class="m-auto pl-[1.5rem] pb-4 pt-4 bg-white w-[315px] h-[410px] border rounded-[10px] shadow-[0px_0px_7px_0px_rgb(128,128,128)]">
@@ -140,9 +142,10 @@ session_start();
         </div>
 
     </main>
-
-    <?php
-    require_once(__DIR__."/../Models/Footer.php");
-    ?>
+    <footer>
+        <?php
+        require_once(__DIR__."/../Models/Footer.php");
+        ?>
+    </footer>
 </body>
 </html>
