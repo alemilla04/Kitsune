@@ -2142,6 +2142,10 @@ html:has(.drawer-toggle:checked) {
   margin-left: 5rem;
 }
 
+.mr-\[5px\] {
+  margin-right: 5px;
+}
+
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -2176,10 +2180,6 @@ html:has(.drawer-toggle:checked) {
 
 .mt-\[5px\] {
   margin-top: 5px;
-}
-
-.mr-\[5px\] {
-  margin-right: 5px;
 }
 
 .flex {
@@ -2321,10 +2321,6 @@ html:has(.drawer-toggle:checked) {
   grid-template-rows: auto auto 1fr;
 }
 
-.flex-row {
-  flex-direction: row;
-}
-
 .flex-col {
   flex-direction: column;
 }
@@ -2351,10 +2347,6 @@ html:has(.drawer-toggle:checked) {
 
 .gap-4 {
   gap: 1rem;
-}
-
-.gap-\[100px\] {
-  gap: 100px;
 }
 
 .overflow-x-hidden {
@@ -2665,6 +2657,10 @@ html:has(.drawer-toggle:checked) {
 }
 
 @media (min-width: 375px) {
+  .sm\:m-auto {
+    margin: auto;
+  }
+
   .sm\:ml-64 {
     margin-left: 16rem;
   }
@@ -2677,12 +2673,32 @@ html:has(.drawer-toggle:checked) {
     margin-left: 270px;
   }
 
+  .sm\:ml-\[200px\] {
+    margin-left: 200px;
+  }
+
+  .sm\:ml-\[100px\] {
+    margin-left: 100px;
+  }
+
+  .sm\:ml-\[150px\] {
+    margin-left: 150px;
+  }
+
+  .sm\:ml-\[130px\] {
+    margin-left: 130px;
+  }
+
   .sm\:flex {
     display: flex;
   }
 
   .sm\:flex-col {
     flex-direction: column;
+  }
+
+  .sm\:text-center {
+    text-align: center;
   }
 }
 
@@ -2723,6 +2739,10 @@ html:has(.drawer-toggle:checked) {
 
   .lg\:hidden {
     display: none;
+  }
+
+  .lg\:flex-grow {
+    flex-grow: 1;
   }
 
   .lg\:flex-row {

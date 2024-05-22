@@ -55,12 +55,16 @@ if(isset($_SESSION['insertarOk'])){
                 <a class="border bg-blue-500 rounded-[5px] p-2 text-xs" href="MakeQuestion.php">Formular una pregunta</a>
             </div>
         </div>
-        <div class='mt-[20px] mb-[20px] lg:flex lg:flex-row md:flex md:flex-col'>
-            <h1>5 preguntas en total</h1>
-            <div class='text-sm flex justify-between border-[1px] rounded-[5px] border-[#BABFC5] p-[8px]'>
+        <div class='mt-[20px] mb-[20px] lg:flex lg:flex-row md:flex md:flex-col gap-4'>
+            <h1 class='flex-grow'>5 preguntas en total</h1>
+            <div class='flex-grow ext-sm flex justify-between border-[1px] rounded-[5px] border-[#BABFC5] p-[8px]'>
                 <li class=''>Mas reciente</li>       
                 <li>Sin responder</li>
-                <li>Puntuacion</li>     
+                <li>Puntuacion</li>
+            </div>
+            <div>
+                <label>Etiquetadas con:</label>
+                <input class='border-[1px] rounded-[5px] border-[#BABFC5]' type="text" name="etiqueta" placeholder="p. ej. php, javascript...">
             </div>
         </div>
         <div class="questions border-2 border-green-400">

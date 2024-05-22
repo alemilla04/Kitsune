@@ -89,7 +89,7 @@ session_start();
                         <div>
                             <h1 class="mt-[20px] mb-[10px] font-bold">Etiqueta</h1>
                             <div class="search-input-box">
-                                <input class="w-[100%] border rounded-[5px]" type="text" name="etiqueta" id="search-input" placeholde="p.j. comida, php, ..." value="<?php echo !empty($_SESSION['question']) ? $_SESSION["question"]["etiqueta"] : '';?>">
+                                <input class="w-[100%] border rounded-[5px]" type="text" name="etiqueta" id="search-input" placeholder="p.j. comida, php, ..." value="<?php echo !empty($_SESSION['question']) ? $_SESSION["question"]["etiqueta"] : '';?>">
                                 <ul>
                                     <li></li>
                                 </ul>
