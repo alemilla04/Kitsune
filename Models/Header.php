@@ -12,6 +12,7 @@
             background-color: #C8CACD;
             border-radius: 4px;
             padding: 10px;
+            transition-duration: 1s;
         }
 
         li{

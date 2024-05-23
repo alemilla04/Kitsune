@@ -43,6 +43,10 @@ if(isset($_SESSION["insertarOK"])){
             padding: 0;
             box-sizing: border-box;
         }
+
+        form p {
+            color: red;
+        }
     </style>
 </head>
 <body class='h-screen w-[100%]'>
@@ -90,10 +94,11 @@ if(isset($_SESSION["insertarOK"])){
                     ?>
                     <label class='font-bold'>Foto de perfil </label>
                     <input class='mt-[5px] mb-[20px] rounded-[7px] p-[7px]' type="file" name="picture">
-                    <input class='bg-[#1B75D0] border-[1px] border-[#1B75D0] text-white mt-[5px] mb-[20px] rounded-[7px] p-[7px]' type="submit" value="Registrarse">
+                    <!-- <input class='bg-[#1B75D0] border-[1px] border-[#1B75D0] text-white mt-[5px] mb-[20px] rounded-[7px] p-[7px]' type="submit" value="Registrarse"> -->
+                    <button class='bg-[#1B75D0] border-[1px] border-[#1B75D0] text-white mt-[5px] mb-[20px] rounded-[7px] p-[7px] cursor-pointer hover:duration-[1s] hover:bg-[#0000ff]' type="submit">Registrarse</button>
                     <?php
                         if(isset($errorInsertar)){
-                            print "<p class='red mb-[30px]'>$errorInsertar</p>";
+                            print "<p class='mb-[30px]'>$errorInsertar</p>";
                         }
 
                         if(isset($insertarOK) && $insertarOK == true){

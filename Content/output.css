@@ -2106,6 +2106,10 @@ html:has(.drawer-toggle:checked) {
   margin: auto;
 }
 
+.m-\[0_auto\] {
+  margin: 0 auto;
+}
+
 .mb-4 {
   margin-bottom: 1rem;
 }
@@ -2180,6 +2184,10 @@ html:has(.drawer-toggle:checked) {
 
 .mt-\[5px\] {
   margin-top: 5px;
+}
+
+.box-border {
+  box-sizing: border-box;
 }
 
 .flex {
@@ -2277,6 +2285,10 @@ html:has(.drawer-toggle:checked) {
   width: 100vw;
 }
 
+.w-\[300px\] {
+  width: 300px;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -2287,6 +2299,10 @@ html:has(.drawer-toggle:checked) {
 
 .flex-grow {
   flex-grow: 1;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .list-decimal {
@@ -2325,6 +2341,10 @@ html:has(.drawer-toggle:checked) {
   flex-direction: column;
 }
 
+.place-items-center {
+  place-items: center;
+}
+
 .items-center {
   align-items: center;
 }
@@ -2347,6 +2367,14 @@ html:has(.drawer-toggle:checked) {
 
 .gap-4 {
   gap: 1rem;
+}
+
+.gap-\[2\.5rem\] {
+  gap: 2.5rem;
+}
+
+.gap-\[10px\] {
+  gap: 10px;
 }
 
 .overflow-x-hidden {
@@ -2438,6 +2466,31 @@ html:has(.drawer-toggle:checked) {
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
+.border-\[\#ccc\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(204 204 204 / var(--tw-border-opacity));
+}
+
+.border-red-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(239 68 68 / var(--tw-border-opacity));
+}
+
+.border-blue-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(59 130 246 / var(--tw-border-opacity));
+}
+
+.border-red-700 {
+  --tw-border-opacity: 1;
+  border-color: rgb(185 28 28 / var(--tw-border-opacity));
+}
+
+.border-yellow-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(250 204 21 / var(--tw-border-opacity));
+}
+
 .bg-\[\#1B75D0\] {
   --tw-bg-opacity: 1;
   background-color: rgb(27 117 208 / var(--tw-bg-opacity));
@@ -2473,6 +2526,11 @@ html:has(.drawer-toggle:checked) {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#007bff\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 123 255 / var(--tw-bg-opacity));
+}
+
 .bg-opacity-60 {
   --tw-bg-opacity: 0.6;
 }
@@ -2505,6 +2563,10 @@ html:has(.drawer-toggle:checked) {
   padding: 8px;
 }
 
+.p-\[30px\] {
+  padding: 30px;
+}
+
 .pb-4 {
   padding-bottom: 1rem;
 }
@@ -2521,6 +2583,14 @@ html:has(.drawer-toggle:checked) {
   text-align: center;
 }
 
+.text-right {
+  text-align: right;
+}
+
+.align-middle {
+  vertical-align: middle;
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -2535,11 +2605,6 @@ html:has(.drawer-toggle:checked) {
   line-height: 1.75rem;
 }
 
-.text-sm {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -2548,6 +2613,11 @@ html:has(.drawer-toggle:checked) {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .font-bold {
@@ -2583,6 +2653,26 @@ html:has(.drawer-toggle:checked) {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+
+.text-\[\#fff\] {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-\[\#155CAB\] {
+  --tw-text-opacity: 1;
+  color: rgb(21 92 171 / var(--tw-text-opacity));
+}
+
+.text-\[\#007bff\] {
+  --tw-text-opacity: 1;
+  color: rgb(0 123 255 / var(--tw-text-opacity));
+}
+
 .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
@@ -2599,6 +2689,20 @@ html:has(.drawer-toggle:checked) {
   --tw-shadow: 0px 0px 7px 0px rgb(128,128,128);
   --tw-shadow-colored: 0px 0px 7px 0px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-\[0px_0px_7px_0px_rgb\(\#808080\)\] {
+  --tw-shadow: 0px 0px 7px 0px rgb(#808080);
+  --tw-shadow-colored: 0px 0px 7px 0px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.duration-\[1s\] {
+  transition-duration: 1s;
+}
+
+.duration-\[5s\] {
+  transition-duration: 5s;
 }
 
 @media (min-width: 1024px) {
@@ -2643,9 +2747,29 @@ html:has(.drawer-toggle:checked) {
   }
 }
 
+.hover\:bg-\[\#BABFC5\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(186 191 197 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-blue-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#d5d7d7\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(213 215 215 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#eff0f0\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(239 240 240 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#0000ff\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 255 / var(--tw-bg-opacity));
 }
 
 .hover\:p-\[10px\]:hover {
@@ -2656,33 +2780,36 @@ html:has(.drawer-toggle:checked) {
   font-weight: 700;
 }
 
+.hover\:text-\[\#0000ff\]:hover {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 255 / var(--tw-text-opacity));
+}
+
+.hover\:text-\[\]:hover {
+  color: ;
+}
+
+.hover\:text-\[\#6184ac\]:hover {
+  --tw-text-opacity: 1;
+  color: rgb(97 132 172 / var(--tw-text-opacity));
+}
+
+.hover\:text-\[\#47505a\]:hover {
+  --tw-text-opacity: 1;
+  color: rgb(71 80 90 / var(--tw-text-opacity));
+}
+
+.hover\:duration-\[1s\]:hover {
+  transition-duration: 1s;
+}
+
 @media (min-width: 375px) {
   .sm\:m-auto {
     margin: auto;
   }
 
-  .sm\:ml-64 {
-    margin-left: 16rem;
-  }
-
   .sm\:ml-\[10px\] {
     margin-left: 10px;
-  }
-
-  .sm\:ml-\[270px\] {
-    margin-left: 270px;
-  }
-
-  .sm\:ml-\[200px\] {
-    margin-left: 200px;
-  }
-
-  .sm\:ml-\[100px\] {
-    margin-left: 100px;
-  }
-
-  .sm\:ml-\[150px\] {
-    margin-left: 150px;
   }
 
   .sm\:ml-\[130px\] {
@@ -2695,10 +2822,6 @@ html:has(.drawer-toggle:checked) {
 
   .sm\:flex-col {
     flex-direction: column;
-  }
-
-  .sm\:text-center {
-    text-align: center;
   }
 }
 
@@ -2739,10 +2862,6 @@ html:has(.drawer-toggle:checked) {
 
   .lg\:hidden {
     display: none;
-  }
-
-  .lg\:flex-grow {
-    flex-grow: 1;
   }
 
   .lg\:flex-row {
