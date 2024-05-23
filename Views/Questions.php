@@ -41,20 +41,20 @@ if(isset($_SESSION['insertarOk'])){
         <div class="text-lg lg:flex lg:flex-row lg:justify-between md:flex md:flex-row md:justify-between sm:flex sm:flex-col">
             <h1>Explora nuestras preguntas</h1>
             <div class="text-white">
-                <a class="border bg-[#007bff] rounded-[5px] p-2 text-xs cursor-pointer hover:duration-[1s] hover:bg-[#0000ff]" href="MakeQuestion.php">Formular una pregunta</a>
+                <a class="border bg-[#007bff] rounded-[5px] p-2 text-xs cursor-pointer hover:duration-[1s] hover:bg-[#165CA3]" href="MakeQuestion.php">Formular una pregunta</a>
             </div>
         </div>
         <div class='mt-[20px] mb-[20px] lg:flex lg:flex-row md:flex md:flex-col gap-4'>
             <h1 class='flex-grow'>5 preguntas en total</h1>
-            <div class='flex-grow text-sm flex justify-between border-[1px] rounded-[5px] border-[#BABFC5] p-[8px]'>
-                <span class='hover:bg-[#eff0f0] rounded-[5px]'>Mas reciente</span>       
-                <span class='hover:bg-[#eff0f0] rounded-[5px]'>Sin responder</span>
-                <span class='hover:bg-[#eff0f0] rounded-[5px]'>Puntuacion</span>
+            <div class='flex-grow text-sm flex justify-between border-[1px] rounded-[5px] border-[#BABFC5] p-[3px]'>
+                <span class='hover:bg-[#eff0f0] rounded-[5px] p-[8px]'>Mas reciente</span>       
+                <span class='hover:bg-[#eff0f0] rounded-[5px] p-[8px]'>Sin responder</span>
+                <span class='hover:bg-[#eff0f0] rounded-[5px] p-[8px]'>Puntuacion</span>
             </div>
             <div>
                 <label>Etiquetadas con:</label>
                 <input class='border-[1px] rounded-[5px] border-[#BABFC5]' type="text" name="etiqueta" placeholder="p. ej. php, javascript...">
-                <button type="submit" class='border bg-[#007bff] rounded-[5px] p-2 text-xs cursor-pointer hover:duration-[1s] hover:bg-[#0000ff] text-white' name="filtro-etiqueta">🔎</button>
+                <button type="submit" class='rounded-[5px] p-2 text-xs cursor-pointer hover:duration-[1s] hover:bg-[#165CA3]' name="filtro-etiqueta">🔎</button>
             </div>
         </div>
         <div class="questions border-2 border-green-400">

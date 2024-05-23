@@ -82,7 +82,7 @@ if(isset($_SESSION["errorLoginPass"])) {
                     unset($_SESSION["errorLogin"]);
                 }
                 ?></p>
-            <p><button class='p-[8px] rounded-[5px] border-[1px] border-[#ccc] bg-[#007bff] mt-[10px] text-[#fff] cursor-pointer hover:duration-[1s] hover:bg-[#0000ff]' type="submit">Iniciar Sesion</button></p>
+            <button class='ml-[60px] p-[8px] rounded-[5px] border-[1px] border-[#ccc] bg-[#007bff] mt-[10px] text-[#fff] cursor-pointer hover:duration-[1s] hover:bg-[#0000ff]' type="submit">Iniciar Sesion</button>
         </form>
     </div>
     <?php

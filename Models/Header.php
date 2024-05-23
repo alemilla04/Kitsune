@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../Content/output.css">
     <style>
         .contenedor li a:hover {
-            font-size: 18px; 
+            font-size: 16px; 
             background-color: #C8CACD;
             border-radius: 4px;
             padding: 10px;
