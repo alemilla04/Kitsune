@@ -6,8 +6,10 @@ class Question {
     public $userID = "";
     public $guest_nombre = "";
     public $guest_email = "";
+    public $respuestas = "";
+    public $fecha = "";
 
     public function __construct() {
-        
+        $this->respuestas = 0;
     }
 }

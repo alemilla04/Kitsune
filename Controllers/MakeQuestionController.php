@@ -39,6 +39,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $question->titulo = $titulo;
         $question->cuerpo = $cuerpo;
         $question->etiqueta = $etiqueta;
+        $fechaHoy = date("Y-m-d H:i:s");
+        $question->fecha = $fechaHoy;
         
         if(isset($_SESSION["usuarioObjeto"])){
             $usuario = selectUser($_SESSION["usuarioObjeto"]["email"]);

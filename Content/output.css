@@ -2108,6 +2108,10 @@ html:has(.drawer-toggle:checked) {
   margin-left: 3px;
 }
 
+.ml-\[60px\] {
+  margin-left: 60px;
+}
+
 .mr-\[5px\] {
   margin-right: 5px;
 }
@@ -2146,14 +2150,6 @@ html:has(.drawer-toggle:checked) {
 
 .mt-\[5px\] {
   margin-top: 5px;
-}
-
-.ml-\[100px\] {
-  margin-left: 100px;
-}
-
-.ml-\[60px\] {
-  margin-left: 60px;
 }
 
 .box-border {
@@ -2510,24 +2506,16 @@ html:has(.drawer-toggle:checked) {
   padding: 30px;
 }
 
+.p-\[3px\] {
+  padding: 3px;
+}
+
 .p-\[7px\] {
   padding: 7px;
 }
 
 .p-\[8px\] {
   padding: 8px;
-}
-
-.p-\[15px\] {
-  padding: 15px;
-}
-
-.p-\[2px\] {
-  padding: 2px;
-}
-
-.p-\[3px\] {
-  padding: 3px;
 }
 
 .pb-4 {
@@ -2548,10 +2536,6 @@ html:has(.drawer-toggle:checked) {
 
 .text-right {
   text-align: right;
-}
-
-.align-middle {
-  vertical-align: middle;
 }
 
 .text-2xl {
@@ -2713,10 +2697,6 @@ html:has(.drawer-toggle:checked) {
 
 .hover\:p-\[10px\]:hover {
   padding: 10px;
-}
-
-.hover\:p-\[8px\]:hover {
-  padding: 8px;
 }
 
 .hover\:font-bold:hover {

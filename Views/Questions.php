@@ -1,9 +1,16 @@
 <?php
 session_start();
+require_once(__DIR__ . "/../Models/Funciones.php");
+require_once(__DIR__ . "/../Models/Config.php");
+require_once(__DIR__ . "/../Models/Question.php");
 
 if(isset($_SESSION['insertarOk'])){
     $insertarOk = $_SESSION['insertarOk'];
 }
+
+$questions = getQuestions();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,30 +65,35 @@ if(isset($_SESSION['insertarOk'])){
             </div>
         </div>
         <div class="questions border-2 border-green-400">
-            <div class="flex gap-4">
-                <div class="border-2 border-red-500 flex-none text-right">
-                    <li>0 votos</li>
-                    <li>0 respuestas</li>
-                    <li>3 vistas</li>
-                </div>
-                <div class="flex-grow border-2 border-blue-500 ">
-                    <a href="#" class="text-[#155CAB] hover:duration-[1s] hover:text-[#47505a]">Problema enfocar un carrito de compra sencillo con PHP y Javascript</a>
-                    <br>
-                    <span>Descripcion de la pregunta</span>
-                    <div class="flex">
-                        <span class="flex-none border-2 border-red-500">etiqueta</span>
-                        <div class="border-2 border-yellow-400 flex-grow text-right">
-                            <span>foto y usuario</span>
-                            <span>formulada hace 5 horas</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- <?php
-            print "<table>";
-            print "";
-            print "</table>";
-            ?> -->
+            <?php
+                    if(isset($questions)){
+                        foreach($questions as $question){
+                            print "<div class='flex gap-4'>";
+                            print "  <div class='border-2 border-red-500 flex-none text-right'>";
+                            print "    <li>0 votos</li>";
+                            print "    <li>$question[respuestas] respuestas</li>";
+                            print "    <li>3 vistas</li>";
+                            
+                            print "  </div>";
+        
+                            print "  <div class='flex-grow border-2 border-blue-500'>";
+                            print "    <a href='#' class='text-[#155CAB] hover:duration-[1s] hover:text-[#47505a]'>Problema enfocar un carrito de compra sencillo con PHP y Javascript</a>";
+                            print "    <br>";
+                            print "    <span>Descripcion de la pregunta</span>";
+                            print "    <div class='flex'>";
+                            print "      <span class='flex-none border-2 border-red-500'>etiqueta</span>";
+                            print "        <div class='border-2 border-yellow-400 flex-grow text-right'>";
+                            print "          <span>foto y usuario</span>";
+                            print "          <span>formulada hace 5 horas</span>";
+                            print "        </div>";
+                            print "    </div>";
+                            print "  </div>";
+                            print "</div>";
+                            print "<br>";
+                        }
+                    }
+
+                ?>
         </div>
     </div>
     <?php
