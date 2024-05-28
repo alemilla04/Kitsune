@@ -1,5 +1,8 @@
 <?php
 session_start();
+require_once(__DIR__."/../Models/User.php");
+require_once(__DIR__."/../Models/Funciones.php");
+
 if(isset($_SESSION["errorNombre"])){
     $errorNombre = $_SESSION["errorNombre"];
 }
@@ -23,8 +26,6 @@ if(isset($_SESSION["errorInsertar"])){
 if(isset($_SESSION["insertarOK"])){
     $insertarOK = $_SESSION["insertarOK"];
 }
-
-
 
 ?>
 <!DOCTYPE html>
@@ -99,6 +100,10 @@ if(isset($_SESSION["insertarOK"])){
                     <?php
                         if(isset($errorInsertar)){
                             print "<p class='mb-[30px]'>$errorInsertar</p>";
+                        }
+
+                        if(isset($insertar)){
+                            print "<p>$insertar</p>";
                         }
 
                         if(isset($insertarOK) && $insertarOK == true){

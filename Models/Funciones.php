@@ -103,7 +103,7 @@ function getQuestions(){
         $listaPreguntas = array();
         
         foreach($resultado as $registro){
-            $pregunta = array("preguntaID" => $registro["preguntaID"], "titulo" => $registro["titulo"], "cuerpo" => $registro["cuerpo"], "etiqueta" => $registro["etiqueta"], "userID" => $registro["userID"], "guest_nombre" => $registro["guest_nombre"], "guest_email" => $registro["guest_email"], "respuestas" => $registro["respuestas"],"fecha" => $registro["fecha"]);
+            $pregunta = array("preguntaID" => $registro["preguntaID"], "titulo" => $registro["titulo"], "cuerpo" => $registro["cuerpo"], "etiqueta" => $registro["etiqueta"], "userID" => $registro["userID"], "guest_nombre" => $registro["guest_nombre"], "guest_email" => $registro["guest_email"], "fecha" => $registro["fecha"], "respuesta" => $registro["respuesta"]);
             array_push($listaPreguntas, $pregunta);
         }
         return $listaPreguntas;
@@ -127,6 +127,25 @@ function selectUser($email) {
     if(!$resultado) {
         return null;
     } elseif(!$resultado->execute([":email"=>$email])) {
+        return null;
+    }else{
+        return $resultado->fetch(PDO::FETCH_ASSOC);
+    }
+}
+
+function selectUserByUserID($userID) {
+    global $cfg;
+    global $pdo;
+
+    $pdo = connectDb();
+
+    $consulta = "SELECT * FROM " . $cfg["mysqlTable"]["table4"] ." WHERE userID = :userID";
+
+    $resultado = $pdo->prepare($consulta);
+
+    if(!$resultado) {
+        return null;
+    } elseif(!$resultado->execute([":userID"=>$userID])) {
         return null;
     }else{
         return $resultado->fetch(PDO::FETCH_ASSOC);
@@ -157,25 +176,30 @@ function insertUser($usuario){
 
     if($pdo != null){
         $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table4"] ." (nombre, email, contraseña, foto)
-                    VALUES (:nombre, :email, :contraseña, :foto)";
+                    VALUES (:nombre, :email, :contrasena, :foto)";
 
         $resultado = $pdo->prepare($consulta);
 
         if(!$resultado){
             return false;
+            // $respuesta = "error en resultado.";
+            // return $respuesta;
         } elseif(!$resultado->execute([
             ":nombre" => $usuario->nombre,
             ":email" => $usuario->email,
-            ":contraseña" => $usuario->password,
+            ":contrasena" => $usuario->password,
             ":foto" => $usuario->foto
         ])){
             return false;
+            // $respuesta = "Error al ejecutar la consulta: " . implode(":", $resultado->errorInfo());
+            // return $respuesta;
         } else {
             return true;
         }
     } else {
         return false;
     }
+
 }
 
 

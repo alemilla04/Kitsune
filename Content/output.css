@@ -2293,6 +2293,10 @@ html:has(.drawer-toggle:checked) {
   grid-template-rows: auto auto 1fr;
 }
 
+.flex-row {
+  flex-direction: row;
+}
+
 .flex-col {
   flex-direction: column;
 }
@@ -2305,12 +2309,20 @@ html:has(.drawer-toggle:checked) {
   align-items: center;
 }
 
+.justify-end {
+  justify-content: flex-end;
+}
+
 .justify-center {
   justify-content: center;
 }
 
 .justify-between {
   justify-content: space-between;
+}
+
+.justify-items-end {
+  justify-items: end;
 }
 
 .gap-1 {
@@ -2536,6 +2548,10 @@ html:has(.drawer-toggle:checked) {
 
 .text-right {
   text-align: right;
+}
+
+.align-middle {
+  vertical-align: middle;
 }
 
 .text-2xl {

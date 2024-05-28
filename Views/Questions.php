@@ -10,6 +10,8 @@ if(isset($_SESSION['insertarOk'])){
 
 $questions = getQuestions();
 
+// var_dump($questions);
+
 
 ?>
 <!DOCTYPE html>
@@ -28,6 +30,27 @@ $questions = getQuestions();
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        .foto-perfil {
+            height: 2.5rem;
+            width: 2.5rem;
+            border-radius: 50%;
+        }
+
+        .contenedor-derecha {
+            color: #626B74;
+            flex-grow: 1;
+            border: solid 2px #dfdf2e;
+            display: flex;
+            justify-content: end;
+            gap: 10px;
+        }
+
+        .contenedor-user {
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
     </style>
 </head>
@@ -68,24 +91,40 @@ $questions = getQuestions();
             <?php
                     if(isset($questions)){
                         foreach($questions as $question){
-                            print "<div class='flex gap-4'>";
+                            print "<div class='text-sm flex gap-4'>";
                             print "  <div class='border-2 border-red-500 flex-none text-right'>";
                             print "    <li>0 votos</li>";
-                            print "    <li>$question[respuestas] respuestas</li>";
+                            if($question["respuesta"]==NULL) {
+                                print "<li>0 respuestas</li>";
+                            } else {
+                                print "<li>1 respuesta</li>";
+                            }
                             print "    <li>3 vistas</li>";
                             
                             print "  </div>";
         
                             print "  <div class='flex-grow border-2 border-blue-500'>";
-                            print "    <a href='#' class='text-[#155CAB] hover:duration-[1s] hover:text-[#47505a]'>Problema enfocar un carrito de compra sencillo con PHP y Javascript</a>";
+                            print "    <a href='#' class='text-[#155CAB] hover:duration-[1s] hover:text-[#47505a]'>$question[titulo]</a>";
                             print "    <br>";
-                            print "    <span>Descripcion de la pregunta</span>";
-                            print "    <div class='flex'>";
-                            print "      <span class='flex-none border-2 border-red-500'>etiqueta</span>";
-                            print "        <div class='border-2 border-yellow-400 flex-grow text-right'>";
-                            print "          <span>foto y usuario</span>";
-                            print "          <span>formulada hace 5 horas</span>";
-                            print "        </div>";
+                            print "    <span>$question[cuerpo]</span>";
+                            print "    <div class='flex items-center'>";
+                            print "      <span class='flex-none border-2 border-red-500'>$question[etiqueta]</span>";
+                            print "      <div class='contenedor-derecha'>";
+                            if($question["userID"]!=NULL){
+                                $usuario = selectUserByUserID($question["userID"]);
+                                if($usuario != NULL){
+                                    print "  <div class='contenedor-user'>";
+                                    print "    <span><img class='foto-perfil' alt='Foto de perfil' src='../Content/profile_pics/$usuario[foto]'/></span>";
+                                    print "    <span>$usuario[nombre]</span>";
+                                    print "    <span>formulada el $question[fecha]</span>";
+                                    print "  </div>";
+                                }
+                                
+                            } else {
+                                print "      <span>$question[guest_nombre]</span>";
+                                print "      <span>formulada el $question[fecha]</span>";
+                            }
+                            print "      </div>";
                             print "    </div>";
                             print "  </div>";
                             print "</div>";
