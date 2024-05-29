@@ -26,7 +26,7 @@ session_start();
     </style>
     <script src="../Scripts/CodeMakeQuestions.js"></script>
 </head>
-<body class="h-screen w-[100%]">
+<body class="h-screen w-[100%] grid grid-cols-[1fr] grid-rows-[auto_1fr_auto]">
     <header>
     <?php
     require_once(__DIR__."/../Models/Header.php");
@@ -48,13 +48,13 @@ session_start();
         </div>
     </div>
     
-    <main class="h-[100%] w-[100%] grid grid-cols-[auto_1fr] grid-rows-[1fr_1fr]">
+    <main class="h-[100%] w-[100%] grid grid-cols-[auto_1fr] grid-rows-[1fr]">
         <?php
             require_once(__DIR__."/../Models/Nav.php");
         ?>
-        <div class="m-5">
+        <div class="lg:ml-[300px] md:ml-[20px] md:mr-[20px] sm:ml-[20px] sm:mr-[20px] mt-[20px] mb-[20px]">
             <h1 class="mb-[20px] font-bold text-xl">Formular una pregunta</h1>
-            <div class="flex border rounded-[10px] shadow-[0px_0px_5px_0px_rgb(128,128,128)] w-[100%]">
+            <div class="flex border rounded-[10px] shadow-[0px_0px_5px_0px_rgb(128,128,128)] lg:w-[75%] md:w-[100%] sm:-[100%]">
                 <form action="../Controllers/MakeQuestionController.php" class="p-4" method="POST">
                     <div>
                         <!-- TITULO -->
@@ -120,15 +120,15 @@ session_start();
                         ?>
                         <?php 
                         if(isset($_SESSION["insertarError"])){
-                            print "<p>$_SESSION[insertarError]</p>";
+                            print "<p class='text-red-500'>$_SESSION[insertarError]</p>";
                         }
 
                         if(isset($_SESSION["errorEmail"])){
-                            print "<p>$_SESSION[errorEmail]</p>";
+                            print "<p class='text-red-500'>$_SESSION[errorEmail]</p>";
                         }
 
                         if(isset($_SESSION["insertarErrorGuest"])){
-                            print "<p>$_SESSION[insertarErrorGuest]</p>";
+                            print "<p class='text-red-500'>$_SESSION[insertarErrorGuest]</p>";
                         }
 
                         unset($_SESSION["insertarError"]);

@@ -11,6 +11,6 @@ CREATE TABLE IF NOT EXISTS usuarios (
     email VARCHAR(100) UNIQUE NOT NULL, -- Email único para cada usuario
     contraseña VARCHAR(100) UNIQUE NOT NULL, -- Email único para cada usuario
     foto VARCHAR(100) NOT NULL,
-    preguntas INT DEFAULT null,
-    respuestas INT DEFAULT null
+    preguntas INT DEFAULT 0,
+    respuestas INT DEFAULT 0
 );

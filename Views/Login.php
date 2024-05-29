@@ -37,8 +37,8 @@ if(isset($_SESSION["errorLoginPass"])) {
 
 <body class="h-screen w-[100%] grid grid-rows-[auto_1fr_auto] place-items-center overflow-x-hidden">
     <div class="flex-1 mt-4">
-        <a href="../Views/Home.php"><img class="w-[25%] h-[20%] lg:ml-80 sm:m-auto" src="../Content/kit-removebg.png" alt="foto de perfil"><a>
-        <a class="enlace btn btn-ghost text-center lg:ml-[370px] sm:ml-[130px] mt-4 text-2xl" href="../Views/Home.php">Kitsune</a>
+        <a href="../Views/Home.php"><img class="w-[25%] h-[20%] lg:ml-80 sm:m-auto md:mt-[100px]" src="../Content/kit-removebg.png" alt="foto de perfil"><a>
+        <a class="enlace btn btn-ghost text-center lg:ml-[370px] md:ml-[210px] sm:ml-[150px] mt-4 text-2xl" href="../Views/Home.php">Kitsune</a>
     </div>
     <div class="h-[100%] w-[100%] mt-[40px] flex flex-col items-center gap-[2.5rem]">
         <form class='w-[300px] p-[30px] border-[1px] border-[#ccc] rounded-[5px] shadow-[0px_0px_7px_0px_rgb(128,128,128)]' action="../Controllers/LoginController.php" method="POST">
