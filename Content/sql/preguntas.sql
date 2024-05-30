@@ -12,6 +12,6 @@ CREATE TABLE IF NOT EXISTS preguntas(
     guest_nombre VARCHAR(100) DEFAULT null,
     guest_email VARCHAR(100) DEFAULT null,
     fecha TIMESTAMP,
-    respuesta int,
+    respuesta int DEFAULT '0',
     FOREIGN KEY (respuesta) REFERENCES respuestas(respuestaID),
 );

@@ -93,7 +93,7 @@ function getQuestions(){
     global $pdo, $cfg;
 
     $pdo = connectDb();
-    $consulta = "SELECT * FROM " . $cfg["mysqlTable"]["table3"];
+    $consulta = "SELECT * FROM " . $cfg["mysqlTable"]["table3"] . " ORDER BY preguntaID DESC";
 
     $resultado = $pdo->query($consulta);
 
@@ -261,22 +261,26 @@ function insertUsersQuestion($question) {
     $pdo = connectDb();
 
     if($pdo != null){
-        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table3"] ." (titulo, cuerpo, etiqueta, userID, respuestas, fecha)
-                    VALUES (:titulo, :cuerpo, :etiqueta, :userID, :respuestas, :fecha)";
+        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table3"] ." (titulo, cuerpo, etiqueta, userID, fecha, respuesta)
+                    VALUES (:titulo, :cuerpo, :etiqueta, :userID, :fecha, :respuesta)";
 
         $resultado = $pdo->prepare($consulta);
 
         if(!$resultado){
-            return false;
+            // return false;
+            $respuesta = "error en resultado.";
+            return $respuesta;
         } elseif(!$resultado->execute([
             ":titulo" => $question->titulo,
             ":cuerpo" => $question->cuerpo,
             ":etiqueta" => $question->etiqueta,
             ":userID" => $question->userID,
-            ":respuestas" => $question->respuestas,
-            ":fecha" => $question->fecha
+            ":fecha" => $question->fecha,
+            ":respuesta" => $question->respuesta
         ])){
-            return false;
+            // return false;
+            $respuesta = "Error al ejecutar la consulta: " . implode(":", $resultado->errorInfo());
+            return $respuesta;
         } else {
             return true;
         }
@@ -291,8 +295,8 @@ function insertGuestsQuestion($question) {
     $pdo = connectDb();
 
     if($pdo != null){
-        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table3"] ." (titulo, cuerpo, etiqueta, guest_nombre, guest_email, respuestas, fecha)
-                    VALUES (:titulo, :cuerpo, :etiqueta, :guest_name, :guest_email, :respuestas, :fecha)";
+        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table3"] ." (titulo, cuerpo, etiqueta, guest_nombre, guest_email, fecha, respuesta)
+                    VALUES (:titulo, :cuerpo, :etiqueta, :guest_name, :guest_email, :fecha, :respuesta)";
 
         $resultado = $pdo->prepare($consulta);
 
@@ -304,8 +308,8 @@ function insertGuestsQuestion($question) {
             ":etiqueta" => $question->etiqueta,
             ":guest_name" => $question->guest_nombre,
             ":guest_email" => $question->guest_email,
-            ":respuestas" => $question->respuestas,
-            ":fecha" => $question->fecha
+            ":fecha" => $question->fecha,
+            ":respuesta" => $question->respuesta
         ])){
             return false;
         } else {

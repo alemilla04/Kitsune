@@ -95,7 +95,6 @@ if(isset($_SESSION["insertarOK"])){
                     ?>
                     <label class='font-bold'>Foto de perfil </label>
                     <input class='mt-[5px] mb-[20px] rounded-[7px] p-[7px]' type="file" name="picture">
-                    <!-- <input class='bg-[#1B75D0] border-[1px] border-[#1B75D0] text-white mt-[5px] mb-[20px] rounded-[7px] p-[7px]' type="submit" value="Registrarse"> -->
                     <button class='bg-[#1B75D0] border-[1px] border-[#1B75D0] text-white mt-[5px] mb-[20px] rounded-[7px] p-[7px] cursor-pointer hover:duration-[1s] hover:bg-[#0000ff]' type="submit">Registrarse</button>
                     <?php
                         if(isset($errorInsertar)){

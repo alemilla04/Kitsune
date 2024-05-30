@@ -6,7 +6,7 @@
     <title>Document</title>
     <!-- <link rel="stylesheet" href="../Content/style-alta.css"> -->
 </head>
-<body>
+<body class='h-screen'>
     <div class="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col items-center justify-center">

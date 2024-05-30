@@ -41,7 +41,6 @@ $questions = getQuestions();
         .contenedor-derecha {
             color: #626B74;
             flex-grow: 1;
-            border: solid 2px #dfdf2e;
             display: flex;
             justify-content: end;
             gap: 10px;
@@ -61,7 +60,7 @@ $questions = getQuestions();
     ?>
     </header>
 
-    <main class="h-[100%] w-[100%] grid grid-cols-[auto_1fr] grid-rows-[1fr]">
+    <main class="h-screen w-[100%] grid grid-cols-[auto_1fr] grid-rows-[1fr]">
 
     <?php
     require_once(__DIR__."/../Models/Nav.php");
@@ -87,12 +86,13 @@ $questions = getQuestions();
                 <button type="submit" class='rounded-[5px] p-2 text-xs cursor-pointer hover:duration-[1s] hover:bg-[#165CA3]' name="filtro-etiqueta">🔎</button>
             </div>
         </div>
-        <div class="questions border-2 border-green-400">
+        <hr>
+        <div class="questions">
             <?php
                     if(isset($questions)){
                         foreach($questions as $question){
-                            print "<div class='text-sm flex gap-4'>";
-                            print "  <div class='border-2 border-red-500 flex-none text-right'>";
+                            print "<div class='text-sm flex gap-4 pt-[20px] pb-[20px]'>";
+                            print "  <div class='flex-none text-right'>";
                             print "    <li>0 votos</li>";
                             if($question["respuesta"]==NULL) {
                                 print "<li>0 respuestas</li>";
@@ -103,17 +103,17 @@ $questions = getQuestions();
                             
                             print "  </div>";
         
-                            print "  <div class='flex-grow border-2 border-blue-500'>";
+                            print "  <div class='flex-grow'>";
                             print "    <a href='#' class='text-[#155CAB] hover:duration-[1s] hover:text-[#47505a]'>$question[titulo]</a>";
                             print "    <br>";
                             print "    <span>$question[cuerpo]</span>";
                             print "    <div class='flex items-center'>";
-                            print "      <span class='flex-none border-2 border-red-500'>$question[etiqueta]</span>";
+                            print "      <span class='flex-none bg-[#E3E6E8] rounded-[5px] p-[5px] font-bold text-[12px]'>$question[etiqueta]</span>";
                             print "      <div class='contenedor-derecha'>";
                             if($question["userID"]!=NULL){
                                 $usuario = selectUserByUserID($question["userID"]);
                                 if($usuario != NULL){
-                                    print "  <div class='contenedor-user'>";
+                                    print "  <div class='contenedor-user text-[12px]'>";
                                     print "    <span><img class='foto-perfil' alt='Foto de perfil' src='../Content/profile_pics/$usuario[foto]'/></span>";
                                     print "    <span>$usuario[nombre]</span>";
                                     print "    <span>formulada el $question[fecha]</span>";
@@ -128,7 +128,7 @@ $questions = getQuestions();
                             print "    </div>";
                             print "  </div>";
                             print "</div>";
-                            print "<br>";
+                            print "<hr>";
                         }
                     }
 
