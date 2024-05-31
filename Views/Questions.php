@@ -53,20 +53,20 @@ $questions = getQuestions();
         }
     </style>
 </head>
-<body class="h-screen w-[100%] grid grid-rows-[auto_1fr_auto] grid-cols-[1fr]">
+<body class="h-screen w-[100%] grid grid-rows-[auto_1fr_auto] grid-cols-[auto_1fr]">
     <header>
     <?php
     require_once(__DIR__."/../Models/Header.php");
     ?>
     </header>
 
-    <main class="h-screen w-[100%] grid grid-cols-[auto_1fr] grid-rows-[1fr]">
-
+    <main class="h-[100%] grid grid-cols-[auto_1fr] grid-rows-[1fr]">
+    
     <?php
     require_once(__DIR__."/../Models/Nav.php");
     ?>
     
-    <div class="h-screen grid grid-cols-[1fr] grid-rows-[auto_auto_1fr] mt-5 lg:ml-[5rem] sm:ml-[10px] mr-[5px]">
+    <div class="h-[100%] grid grid-cols-[1fr] grid-rows-[auto_auto_1fr] mt-5 lg:ml-[5rem] sm:ml-[10px] mr-[5px]">
         <div class="text-lg lg:flex lg:flex-row lg:justify-between md:flex md:flex-row md:justify-between sm:flex sm:flex-col">
             <h1>Explora nuestras preguntas</h1>
             <div class="text-white">
@@ -87,7 +87,7 @@ $questions = getQuestions();
             </div>
         </div>
         <hr>
-        <div class="questions">
+        <div class="questions h-screen">
             <?php
                     if(isset($questions)){
                         foreach($questions as $question){
@@ -121,8 +121,10 @@ $questions = getQuestions();
                                 }
                                 
                             } else {
+                                print "  <div class='contenedor-user text-[12px]'>";
                                 print "      <span>$question[guest_nombre]</span>";
                                 print "      <span>formulada el $question[fecha]</span>";
+                                print "  </div>";
                             }
                             print "      </div>";
                             print "    </div>";
