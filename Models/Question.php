@@ -11,5 +11,8 @@ class Question {
 
     public function __construct() {
         $this->respuesta = 0;
+        $this->userID = NULL;
+        $this->guest_nombre = NULL;
+        $this->guest_email = NULL;
     }
 }

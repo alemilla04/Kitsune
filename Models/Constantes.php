@@ -1,0 +1,5 @@
+<?php
+//Constantes de codigo
+
+
+?>

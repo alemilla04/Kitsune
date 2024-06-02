@@ -46,14 +46,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $usuario = selectUser($_SESSION["usuarioObjeto"]["email"]);
             if($usuario!=null){
                 $question->userID = $usuario['userID'];
-                $insertarOK = insertUsersQuestion($question);
+                $insertarOK = insertQuestion($question);
                 
                 if(!$insertarOK){
                     $_SESSION["insertarError"] = "Error al crear la pregunta";
                     header("Location: ".APP_FOLDER."/../Views/MakeQuestion.php");
                     exit();
                 } else {
-                    $_SESSION["insertarOk"] = "Pregunta creada correctamente";
+                    // $_SESSION["insertarOk"] = "Pregunta creada correctamente";
                     $usuario['preguntas'] = $usuario['preguntas'] + 1; 
                     
                     updateUser($usuario);
@@ -93,9 +93,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 exit();
             }
             
-            $insertGuestsQuestion = insertGuestsQuestion($question);
+            $insertQuestion = insertQuestion($question);
 
-            if(!$insertGuestsQuestion) {
+            if(!$insertQuestion) {
                 $_SESSION["insertarErrorGuest"] = "Error al crear la pregunta";
                 header("Location: ".APP_FOLDER."/../Views/MakeQuestion.php");
                 exit();

@@ -54,7 +54,7 @@ session_start();
         ?>
         <div class="lg:ml-[300px] md:ml-[20px] md:mr-[20px] sm:ml-[20px] sm:mr-[20px] mt-[20px] mb-[20px]">
             <h1 class="mb-[20px] font-bold text-xl">Formular una pregunta</h1>
-            <div class="flex border rounded-[10px] shadow-[0px_0px_5px_0px_rgb(128,128,128)] lg:w-[75%] md:w-[100%] sm:-[100%]">
+            <div class="flex border rounded-[10px] shadow-[0px_0px_5px_0px_rgb(128,128,128)] lg:w-[56%] md:w-[100%] sm:-[100%]">
                 <form action="../Controllers/MakeQuestionController.php" class="p-4" method="POST">
                     <div>
                         <!-- TITULO -->
@@ -79,7 +79,7 @@ session_start();
                             <textarea name='cuerpo' id="text-area" class="border rounded-[5px] textarea textarea-bordered h-24 w-[100%]" placeholder="Describe tu problema" value="<?php echo !empty($_SESSION['question']) ? $_SESSION["question"]["cuerpo"] : '';?>"></textarea>
                             <div class="label">
                                 <span class="label-text-alt">Escribir</span>
-                                <span id="span-borrar-todo">Borrar Todo</span>
+                                <span class="label-text-alt" id="span-borrar-todo">Borrar Todo</span>
                             </div>
                             <div id="text-area-preview"></div>
                             </label>

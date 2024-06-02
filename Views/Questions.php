@@ -4,14 +4,24 @@ require_once(__DIR__ . "/../Models/Funciones.php");
 require_once(__DIR__ . "/../Models/Config.php");
 require_once(__DIR__ . "/../Models/Question.php");
 
-if(isset($_SESSION['insertarOk'])){
-    $insertarOk = $_SESSION['insertarOk'];
-}
+// if(isset($_SESSION['insertarOk'])){
+//     $insertarOk = $_SESSION['insertarOk'];
+// }
 
 $questions = getQuestions();
 
 // var_dump($questions);
 
+// $question = new Question();
+// $question->titulo = "prueba";
+// $question->cuerpo = "prueba 1.1";
+// $question->etiqueta = "prueba";
+// $fechaHoy = date("Y-m-d H:i:s");
+// $question->fecha = $fechaHoy;
+// $question->userID = 1;
+// $insertar = insertQuestion($question);
+
+// print $insertar;
 
 ?>
 <!DOCTYPE html>
@@ -53,20 +63,20 @@ $questions = getQuestions();
         }
     </style>
 </head>
-<body class="h-screen w-[100%] grid grid-rows-[auto_1fr_auto] grid-cols-[auto_1fr]">
+<body class="h-screen grid grid-rows-[auto_1fr_auto] grid-cols-[1fr]">
     <header>
     <?php
     require_once(__DIR__."/../Models/Header.php");
     ?>
     </header>
 
-    <main class="h-[100%] grid grid-cols-[auto_1fr] grid-rows-[1fr]">
+    <main class="h-[100%] w-[100%] grid grid-cols-[auto_1fr] grid-rows-[1fr]">
     
     <?php
     require_once(__DIR__."/../Models/Nav.php");
     ?>
     
-    <div class="h-[100%] grid grid-cols-[1fr] grid-rows-[auto_auto_1fr] mt-5 lg:ml-[5rem] sm:ml-[10px] mr-[5px]">
+    <div class="h-[100%] flex flex-col mt-5 lg:ml-[5rem] sm:ml-[10px] mr-[5px]">
         <div class="text-lg lg:flex lg:flex-row lg:justify-between md:flex md:flex-row md:justify-between sm:flex sm:flex-col">
             <h1>Explora nuestras preguntas</h1>
             <div class="text-white">
@@ -74,7 +84,9 @@ $questions = getQuestions();
             </div>
         </div>
         <div class='mt-[20px] mb-[20px] lg:flex lg:flex-row md:flex md:flex-col gap-4'>
-            <h1 class='flex-grow'>5 preguntas en total</h1>
+            <?php
+            print "<h1 class='flex-grow'> ". count($questions) ." preguntas en total</h1>";
+            ?>
             <div class='flex-grow text-sm flex justify-between border-[1px] rounded-[5px] border-[#BABFC5] p-[3px]'>
                 <span class='hover:bg-[#eff0f0] rounded-[5px] p-[8px]'>Mas reciente</span>       
                 <span class='hover:bg-[#eff0f0] rounded-[5px] p-[8px]'>Sin responder</span>
@@ -87,11 +99,11 @@ $questions = getQuestions();
             </div>
         </div>
         <hr>
-        <div class="questions h-screen">
+        <div class="questions">
             <?php
                     if(isset($questions)){
                         foreach($questions as $question){
-                            print "<div class='text-sm flex gap-4 pt-[20px] pb-[20px]'>";
+                            print "<div class='text-sm lg:flex md:flex gap-4 pt-[20px] pb-[20px]'>";
                             print "  <div class='flex-none text-right'>";
                             print "    <li>0 votos</li>";
                             if($question["respuesta"]==NULL) {
@@ -138,11 +150,11 @@ $questions = getQuestions();
         </div>
     </div>
     <?php
-    if(isset($insertarOk)){
-        print "<p>$insertarOk</p>";
-    }
+    // if(isset($insertarOk)){
+    //     print "<p>$insertarOk</p>";
+    // }
 
-    unset($_SESSION["insertarOk"]);
+    // unset($_SESSION["insertarOk"]);
     ?>
     </main>
     <footer>

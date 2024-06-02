@@ -255,63 +255,34 @@ function updatePasswordUser($password){
 
 }
 // TABLA PREGUNTAS
-function insertUsersQuestion($question) {
+function insertQuestion($question) {
     global $pdo,$cfg;
 
     $pdo = connectDb();
 
     if($pdo != null){
-        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table3"] ." (titulo, cuerpo, etiqueta, userID, fecha, respuesta)
-                    VALUES (:titulo, :cuerpo, :etiqueta, :userID, :fecha, :respuesta)";
-
-        $resultado = $pdo->prepare($consulta);
-
-        if(!$resultado){
-            // return false;
-            $respuesta = "error en resultado.";
-            return $respuesta;
-        } elseif(!$resultado->execute([
-            ":titulo" => $question->titulo,
-            ":cuerpo" => $question->cuerpo,
-            ":etiqueta" => $question->etiqueta,
-            ":userID" => $question->userID,
-            ":fecha" => $question->fecha,
-            ":respuesta" => $question->respuesta
-        ])){
-            // return false;
-            $respuesta = "Error al ejecutar la consulta: " . implode(":", $resultado->errorInfo());
-            return $respuesta;
-        } else {
-            return true;
-        }
-    } else {
-        return false;
-    }
-}
-
-function insertGuestsQuestion($question) {
-    global $pdo,$cfg;
-
-    $pdo = connectDb();
-
-    if($pdo != null){
-        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table3"] ." (titulo, cuerpo, etiqueta, guest_nombre, guest_email, fecha, respuesta)
-                    VALUES (:titulo, :cuerpo, :etiqueta, :guest_name, :guest_email, :fecha, :respuesta)";
+        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table3"] ." (titulo, cuerpo, etiqueta, userID, guest_nombre, guest_email, fecha, respuesta)
+                        VALUES (:titulo, :cuerpo, :etiqueta, :userID, :guest_name, :guest_email, :fecha, :respuesta)";
 
         $resultado = $pdo->prepare($consulta);
 
         if(!$resultado){
             return false;
+            // $respuesta = "error en resultado.";
+            // return $respuesta;
         } elseif(!$resultado->execute([
             ":titulo" => $question->titulo,
             ":cuerpo" => $question->cuerpo,
             ":etiqueta" => $question->etiqueta,
+            ":userID" => $question->userID,
             ":guest_name" => $question->guest_nombre,
             ":guest_email" => $question->guest_email,
             ":fecha" => $question->fecha,
             ":respuesta" => $question->respuesta
         ])){
             return false;
+            // $respuesta = "Error al ejecutar la consulta: " . implode(":", $resultado->errorInfo());
+            // return $respuesta;
         } else {
             return true;
         }
@@ -319,3 +290,34 @@ function insertGuestsQuestion($question) {
         return false;
     }
 }
+
+// function insertGuestsQuestion($question) {
+//     global $pdo,$cfg;
+
+//     $pdo = connectDb();
+
+//     if($pdo != null){
+//         $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table3"] ." (titulo, cuerpo, etiqueta, guest_nombre, guest_email, fecha, respuesta)
+//                     VALUES (:titulo, :cuerpo, :etiqueta, :guest_name, :guest_email, :fecha, :respuesta)";
+
+//         $resultado = $pdo->prepare($consulta);
+
+//         if(!$resultado){
+//             return false;
+//         } elseif(!$resultado->execute([
+//             ":titulo" => $question->titulo,
+//             ":cuerpo" => $question->cuerpo,
+//             ":etiqueta" => $question->etiqueta,
+//             ":guest_name" => $question->guest_nombre,
+//             ":guest_email" => $question->guest_email,
+//             ":fecha" => $question->fecha,
+//             ":respuesta" => $question->respuesta
+//         ])){
+//             return false;
+//         } else {
+//             return true;
+//         }
+//     } else {
+//         return false;
+//     }
+// }

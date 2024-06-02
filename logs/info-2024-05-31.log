@@ -1,0 +1,77 @@
+[2024-05-31 14:15:28] [INFO | Message: '1' | Route File: ruta]
+[2024-05-31 14:15:28] [INFO | Message: '2' | Route File: ruta]
+[2024-05-31 14:15:28] [INFO | Message: '3' | Route File: ruta]
+[2024-05-31 14:15:28] [INFO | Message: '4' | Route File: ruta]
+[2024-05-31 14:15:28] [INFO | Message: '6' | Route File: ruta]
+[2024-05-31 14:17:01] [INFO | Message: '1' | Route File: ruta]
+[2024-05-31 14:17:01] [INFO | Message: '2' | Route File: ruta]
+[2024-05-31 14:17:01] [INFO | Message: '3' | Route File: ruta]
+[2024-05-31 14:17:01] [INFO | Message: '4' | Route File: ruta]
+[2024-05-31 14:17:01] [INFO | Message: 'INSERT INTO preguntas (titulo, cuerpo, etiqueta, userID, guest_nombre, guest_email, fecha, respuesta)
+                        VALUES (:titulo, :cuerpo, :etiqueta, :userid, :guest_name, :guest_email, :fecha, :respuesta)' | Route File: ruta]
+[2024-05-31 14:17:01] [INFO | Message: array (
+  ':titulo' => 'Os gustan las rosas',
+  ':cuerpo' => 'asdasdasdassa',
+  ':etiqueta' => 'flores',
+  ':userid' => '',
+  ':guest_name' => 'paca',
+  ':guest_email' => 'paca.rosita@gmail.com',
+  ':respuesta' => 0,
+  ':fecha' => '2024-05-31 14:17:01',
+) | Route File: ruta]
+[2024-05-31 14:17:01] [INFO | Message: '6' | Route File: ruta]
+[2024-05-31 14:19:13] [INFO | Message: '1' | Route File: ruta]
+[2024-05-31 14:19:13] [INFO | Message: '2' | Route File: ruta]
+[2024-05-31 14:19:13] [INFO | Message: '3' | Route File: ruta]
+[2024-05-31 14:19:13] [INFO | Message: '4' | Route File: ruta]
+[2024-05-31 14:19:13] [INFO | Message: 'INSERT INTO preguntas (titulo, cuerpo, etiqueta, userID, guest_nombre, guest_email, fecha, respuesta)
+                        VALUES (:titulo, :cuerpo, :etiqueta, :userid, :guest_name, :guest_email, :fecha, :respuesta)' | Route File: ruta]
+[2024-05-31 14:19:13] [INFO | Message: array (
+  ':titulo' => 'Os gustan las rosas',
+  ':cuerpo' => 'asdsadasdads',
+  ':etiqueta' => 'flores',
+  ':userid' => '',
+  ':guest_name' => 'paca',
+  ':guest_email' => 'paca.rosita@gmail.com',
+  ':respuesta' => 0,
+  ':fecha' => '2024-05-31 14:19:13',
+) | Route File: ruta]
+[2024-05-31 14:19:13] [INFO | Message: array (
+  0 => '22007',
+  1 => 1366,
+  2 => 'Incorrect integer value: \'\' for column `Kitsune`.`preguntas`.`userID` at row 1',
+) | Route File: ruta]
+[2024-05-31 14:20:05] [INFO | Message: '1' | Route File: ruta]
+[2024-05-31 14:20:05] [INFO | Message: '2' | Route File: ruta]
+[2024-05-31 14:20:05] [INFO | Message: '3' | Route File: ruta]
+[2024-05-31 14:20:05] [INFO | Message: '4' | Route File: ruta]
+[2024-05-31 14:20:05] [INFO | Message: 'INSERT INTO preguntas (titulo, cuerpo, etiqueta, userID, guest_nombre, guest_email, fecha, respuesta)
+                        VALUES (:titulo, :cuerpo, :etiqueta, :userid, :guest_name, :guest_email, :fecha, :respuesta)' | Route File: ruta]
+[2024-05-31 14:20:05] [INFO | Message: array (
+  ':titulo' => 'Os gustan las rosas',
+  ':cuerpo' => 'ASDASDSADAS',
+  ':etiqueta' => 'flores',
+  ':userid' => '',
+  ':guest_name' => 'paca',
+  ':guest_email' => 'paca.rosita@gmail.com',
+  ':respuesta' => 0,
+  ':fecha' => '2024-05-31 14:20:05',
+) | Route File: ruta]
+[2024-05-31 14:20:05] [INFO | Message: '7' | Route File: ruta]
+[2024-05-31 14:21:29] [INFO | Message: '1' | Route File: ruta]
+[2024-05-31 14:21:29] [INFO | Message: '2' | Route File: ruta]
+[2024-05-31 14:21:29] [INFO | Message: '3' | Route File: ruta]
+[2024-05-31 14:21:29] [INFO | Message: '4' | Route File: ruta]
+[2024-05-31 14:21:29] [INFO | Message: 'INSERT INTO preguntas (titulo, cuerpo, etiqueta, userID, guest_nombre, guest_email, fecha, respuesta)
+                        VALUES (:titulo, :cuerpo, :etiqueta, :userid, :guest_name, :guest_email, :fecha, :respuesta)' | Route File: ruta]
+[2024-05-31 14:21:29] [INFO | Message: array (
+  ':titulo' => 'ASDASDASDASDAS',
+  ':cuerpo' => 'GFDSFDSDFSDFDSF',
+  ':etiqueta' => 'flores',
+  ':userid' => NULL,
+  ':guest_name' => 'paca',
+  ':guest_email' => 'paca.rosita@gmail.com',
+  ':respuesta' => 0,
+  ':fecha' => '2024-05-31 14:21:29',
+) | Route File: ruta]
+[2024-05-31 14:21:29] [INFO | Message: '7' | Route File: ruta]
