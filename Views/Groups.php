@@ -27,8 +27,8 @@ if(isset($_SESSION["error3"])){
     <?php
     require("../Models/Header.php");
     ?>
-    <p class="text-center mb-4 size-4">Formulario de opinion de usuario</p>
     <main class="grid justify-center border-2 p-4 border-white rounded-sm">
+        <p class="text-center mb-4 size-4">Formulario de opinion de usuario</p>
         <form action="../Controllers/GroupsController.php" method="POST" class="flex flex-col gap-1">
             <label>Nombre: </label>
                 <input type="text" id="name" name="nombre" size="20" class="bg-white text-black">

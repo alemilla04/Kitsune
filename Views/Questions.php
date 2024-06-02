@@ -54,13 +54,17 @@ $questions = getQuestions();
             display: flex;
             justify-content: end;
             gap: 10px;
+            margin-top: 7px;
         }
 
         .contenedor-user {
             display: flex;
             align-items: center;
             gap: 5px;
+            margin-top: 7px;
         }
+
+
     </style>
 </head>
 <body class="h-screen grid grid-rows-[auto_1fr_auto] grid-cols-[1fr]">
@@ -103,9 +107,9 @@ $questions = getQuestions();
             <?php
                     if(isset($questions)){
                         foreach($questions as $question){
-                            print "<div class='text-sm lg:flex md:flex gap-4 pt-[20px] pb-[20px]'>";
-                            print "  <div class='flex-none text-right'>";
-                            print "    <li>0 votos</li>";
+                            print "<div class='text-sm lg:flex md:flex md:flex-row lg:flex-row sm:flex-col gap-4 pt-[20px] pb-[20px]'>";
+                            print "  <div class='lg:flex-col md:flex-col lg:gap-2 md:gap-2 lg:flex-none lg:text-right md:flex-none md:text-right sm:flex sm:flex-row sm:gap-12 sm:mb-[10px]'>";
+                            print "    <li>0 votos</li>"; 
                             if($question["respuesta"]==NULL) {
                                 print "<li>0 respuestas</li>";
                             } else {
@@ -115,11 +119,12 @@ $questions = getQuestions();
                             
                             print "  </div>";
         
-                            print "  <div class='flex-grow'>";
-                            print "    <a href='#' class='text-[#155CAB] hover:duration-[1s] hover:text-[#47505a]'>$question[titulo]</a>";
-                            print "    <br>";
+                            print "  <div class='lg:flex-grow lg:flex-col md:flex-grow md:flex-col'>";
+                            print "    <form action='./Question.php' method='POST' enctype='multipart/form-data'>";
+                            print "      <button type='submit' name='ir-a-question' value='$question[preguntaID]' class='text-[#155CAB] hover:duration-[1s] hover:text-[#47505a] mb-[5px]'>$question[titulo]</button>";
+                            print "    </form>";
                             print "    <span>$question[cuerpo]</span>";
-                            print "    <div class='flex items-center'>";
+                            print "    <div class='lg:flex lg:flex-row md:flex md:flex-row sm:flex-col items-center'>";
                             print "      <span class='flex-none bg-[#E3E6E8] rounded-[5px] p-[5px] font-bold text-[12px]'>$question[etiqueta]</span>";
                             print "      <div class='contenedor-derecha'>";
                             if($question["userID"]!=NULL){

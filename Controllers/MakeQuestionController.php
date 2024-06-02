@@ -110,6 +110,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     } else {
         header("Location: ".APP_FOLDER."/../Views/MakeQuestion.php");
+        exit();
     }
-    
+} else {
+    header("Location: ".APP_FOLDER."/../Views/Home.php");
+    exit();
 }

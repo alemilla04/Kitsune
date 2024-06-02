@@ -12,6 +12,10 @@ $listaUsuarios = selectUsers();
     <title>Document</title>
     <link rel="stylesheet" href="../Content/output.css">
     <style>
+        :root {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
         main {
             flex:1;
             display: grid;

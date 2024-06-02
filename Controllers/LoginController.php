@@ -44,4 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location:../Views/Login.php");
         exit();
     }
+} else {
+    header("Location: ".APP_FOLDER."/../Views/Home.php");
+    exit();
 }

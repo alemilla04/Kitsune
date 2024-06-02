@@ -3,17 +3,6 @@ require_once(__DIR__ . "/../Models/Funciones.php");
 require_once(__DIR__ . "/../Models/Experience.php");
 session_start();
 
-function insertGuestsExperience($experiencia){
-    global $pdo,$cfg;
-
-    $pdo = connectDb();
-
-    $sql = "INSERT INTO ". $cfg["mysqlTable"]["table2"] ."(name,texto1,texto2) VALUES (:name,:texto1,:texto2)";
-    $resultado = $pdo->prepare($sql);
-    $resultado->execute([':name' => $experiencia->name,':texto1' => $experiencia->opinion,":texto2"=>$experiencia->puntuaje]);
-
-}
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario = $_POST["nombre"];
     $texto1 = $_POST["texto1"];
@@ -35,10 +24,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $experiencia->puntuaje = $texto2;
         insertGuestsExperience($experiencia);
         header("Location:../Views/ShowMessagesGroups.php");
+        exit();
     }else{
         header("Location:../Views/Groups.php");
+        exit();
     }
 }else{
     header("location:../Views/Groups.php");
+    exit();
 }
 ?>

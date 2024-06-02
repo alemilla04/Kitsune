@@ -110,8 +110,23 @@ function getQuestions(){
     }
 }
 
-function selectQuestion($questionID){
+function getQuestion($preguntaID){
+    global $cfg;
+    global $pdo;
 
+    $pdo = connectDb();
+
+    $consulta = "SELECT * FROM " . $cfg["mysqlTable"]["table3"] ." WHERE preguntaID = :preguntaID";
+
+    $resultado = $pdo->prepare($consulta);
+
+    if(!$resultado) {
+        return null;
+    } elseif(!$resultado->execute([":preguntaID"=>$preguntaID])) {
+        return null;
+    }else{
+        return $resultado->fetch(PDO::FETCH_ASSOC);
+    }
 }
 
 function selectUser($email) {
@@ -291,33 +306,13 @@ function insertQuestion($question) {
     }
 }
 
-// function insertGuestsQuestion($question) {
-//     global $pdo,$cfg;
+function insertGuestsExperience($experiencia){
+    global $pdo,$cfg;
 
-//     $pdo = connectDb();
+    $pdo = connectDb();
 
-//     if($pdo != null){
-//         $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table3"] ." (titulo, cuerpo, etiqueta, guest_nombre, guest_email, fecha, respuesta)
-//                     VALUES (:titulo, :cuerpo, :etiqueta, :guest_name, :guest_email, :fecha, :respuesta)";
+    $sql = "INSERT INTO ". $cfg["mysqlTable"]["table2"] ."(name,texto1,texto2) VALUES (:name,:texto1,:texto2)";
+    $resultado = $pdo->prepare($sql);
+    $resultado->execute([':name' => $experiencia->name,':texto1' => $experiencia->opinion,":texto2"=>$experiencia->puntuaje]);
 
-//         $resultado = $pdo->prepare($consulta);
-
-//         if(!$resultado){
-//             return false;
-//         } elseif(!$resultado->execute([
-//             ":titulo" => $question->titulo,
-//             ":cuerpo" => $question->cuerpo,
-//             ":etiqueta" => $question->etiqueta,
-//             ":guest_name" => $question->guest_nombre,
-//             ":guest_email" => $question->guest_email,
-//             ":fecha" => $question->fecha,
-//             ":respuesta" => $question->respuesta
-//         ])){
-//             return false;
-//         } else {
-//             return true;
-//         }
-//     } else {
-//         return false;
-//     }
-// }
+}

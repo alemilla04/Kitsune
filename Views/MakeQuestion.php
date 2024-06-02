@@ -10,7 +10,6 @@ session_start();
     <link rel="stylesheet" href="../Content/output.css">
     <style>
         :root {
-            font-size: 18px;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
 

@@ -2164,6 +2164,10 @@ html:has(.drawer-toggle:checked) {
   margin-top: 5px;
 }
 
+.mb-\[5px\] {
+  margin-bottom: 5px;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -2307,6 +2311,10 @@ html:has(.drawer-toggle:checked) {
 
 .grid-rows-\[auto_auto_1fr\] {
   grid-template-rows: auto auto 1fr;
+}
+
+.flex-row {
+  flex-direction: row;
 }
 
 .flex-col {
@@ -2556,6 +2564,18 @@ html:has(.drawer-toggle:checked) {
   padding-top: 20px;
 }
 
+.pb-\[5px\] {
+  padding-bottom: 5px;
+}
+
+.pb-\[4px\] {
+  padding-bottom: 4px;
+}
+
+.text-left {
+  text-align: left;
+}
+
 .text-center {
   text-align: center;
 }
@@ -2772,6 +2792,14 @@ html:has(.drawer-toggle:checked) {
     margin-right: 20px;
   }
 
+  .sm\:mb-\[10px\] {
+    margin-bottom: 10px;
+  }
+
+  .sm\:mt-\[5px\] {
+    margin-top: 5px;
+  }
+
   .sm\:flex {
     display: flex;
   }
@@ -2788,8 +2816,40 @@ html:has(.drawer-toggle:checked) {
     grid-template-rows: auto 1fr;
   }
 
+  .sm\:flex-row {
+    flex-direction: row;
+  }
+
   .sm\:flex-col {
     flex-direction: column;
+  }
+
+  .sm\:justify-between {
+    justify-content: space-between;
+  }
+
+  .sm\:gap-4 {
+    gap: 1rem;
+  }
+
+  .sm\:gap-6 {
+    gap: 1.5rem;
+  }
+
+  .sm\:gap-8 {
+    gap: 2rem;
+  }
+
+  .sm\:gap-10 {
+    gap: 2.5rem;
+  }
+
+  .sm\:gap-12 {
+    gap: 3rem;
+  }
+
+  .sm\:text-right {
+    text-align: right;
   }
 }
 
@@ -2818,6 +2878,14 @@ html:has(.drawer-toggle:checked) {
     width: 100%;
   }
 
+  .md\:flex-none {
+    flex: none;
+  }
+
+  .md\:flex-grow {
+    flex-grow: 1;
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
@@ -2828,6 +2896,22 @@ html:has(.drawer-toggle:checked) {
 
   .md\:justify-between {
     justify-content: space-between;
+  }
+
+  .md\:gap-2 {
+    gap: 0.5rem;
+  }
+
+  .md\:gap-\[4px\] {
+    gap: 4px;
+  }
+
+  .md\:gap-1 {
+    gap: 0.25rem;
+  }
+
+  .md\:text-right {
+    text-align: right;
   }
 }
 
@@ -2892,11 +2976,39 @@ html:has(.drawer-toggle:checked) {
     width: 56%;
   }
 
+  .lg\:flex-none {
+    flex: none;
+  }
+
+  .lg\:flex-grow {
+    flex-grow: 1;
+  }
+
   .lg\:flex-row {
     flex-direction: row;
   }
 
+  .lg\:flex-col {
+    flex-direction: column;
+  }
+
   .lg\:justify-between {
     justify-content: space-between;
+  }
+
+  .lg\:gap-2 {
+    gap: 0.5rem;
+  }
+
+  .lg\:gap-\[4px\] {
+    gap: 4px;
+  }
+
+  .lg\:gap-1 {
+    gap: 0.25rem;
+  }
+
+  .lg\:text-right {
+    text-align: right;
   }
 }
