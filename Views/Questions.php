@@ -110,12 +110,8 @@ $questions = getQuestions();
                             print "<div class='text-sm lg:flex md:flex md:flex-row lg:flex-row sm:flex-col gap-4 pt-[20px] pb-[20px]'>";
                             print "  <div class='lg:flex-col md:flex-col lg:gap-2 md:gap-2 lg:flex-none lg:text-right md:flex-none md:text-right sm:flex sm:flex-row sm:gap-12 sm:mb-[10px]'>";
                             print "    <li>0 votos</li>"; 
-                            if($question["respuesta"]==NULL) {
-                                print "<li>0 respuestas</li>";
-                            } else {
-                                print "<li>1 respuesta</li>";
-                            }
-                            print "    <li>3 vistas</li>";
+                            print "    <li>$question[respuestas] respuesta</li>";
+                            print "    <li>$question[vistas] vistas</li>";
                             
                             print "  </div>";
         

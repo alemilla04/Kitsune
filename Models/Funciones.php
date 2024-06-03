@@ -103,7 +103,7 @@ function getQuestions(){
         $listaPreguntas = array();
         
         foreach($resultado as $registro){
-            $pregunta = array("preguntaID" => $registro["preguntaID"], "titulo" => $registro["titulo"], "cuerpo" => $registro["cuerpo"], "etiqueta" => $registro["etiqueta"], "userID" => $registro["userID"], "guest_nombre" => $registro["guest_nombre"], "guest_email" => $registro["guest_email"], "fecha" => $registro["fecha"], "respuesta" => $registro["respuesta"]);
+            $pregunta = array("preguntaID" => $registro["preguntaID"], "titulo" => $registro["titulo"], "cuerpo" => $registro["cuerpo"], "etiqueta" => $registro["etiqueta"], "userID" => $registro["userID"], "guest_nombre" => $registro["guest_nombre"], "guest_email" => $registro["guest_email"], "fecha" => $registro["fecha"], "respuestas" => $registro["respuestas"], "vistas" => $registro["vistas"]);
             array_push($listaPreguntas, $pregunta);
         }
         return $listaPreguntas;
@@ -126,6 +126,38 @@ function getQuestion($preguntaID){
         return null;
     }else{
         return $resultado->fetch(PDO::FETCH_ASSOC);
+    }
+}
+
+function updateQuestion($pregunta){
+    global $pdo, $cfg;
+
+    $pdo = connectDb();
+
+    $consulta = "UPDATE " . $cfg["mysqlTable"]["table3"] ." SET titulo = :titulo, cuerpo = :cuerpo, etiqueta = :etiqueta, guest_nombre = :guest_nombre, guest_email = :guest_email, vistas = :vistas WHERE preguntaID = :preguntaID";
+
+    $resultado = $pdo->prepare($consulta);
+
+    $params = [
+        ":titulo" => $pregunta["titulo"],
+        ":cuerpo" => $pregunta["cuerpo"],
+        ":etiqueta" => $pregunta["etiqueta"],
+        ":guest_nombre" => $pregunta["guest_nombre"],
+        ":guest_email" => $pregunta["guest_email"],
+        ":vistas" => $pregunta["vistas"],
+        ":preguntaID" => $pregunta["preguntaID"]
+    ];
+
+    if(!$resultado){
+        // $respuesta = "error en resultado.";
+        // return $respuesta;
+        return false;
+    }elseif(!$resultado->execute($params)){
+        // $respuesta = "Error al ejecutar la consulta: " . implode(":", $resultado->errorInfo());
+        // return $respuesta;
+        return false;
+    }else{
+        return true;
     }
 }
 
@@ -255,11 +287,13 @@ function updateUser($user){
     ];
 
     if(!$resultado){
-        $respuesta = "error en resultado.";
-        return $respuesta;
+        // $respuesta = "error en resultado.";
+        // return $respuesta;
+        return false;
     }elseif(!$resultado->execute($params)){
-        $respuesta = "Error al ejecutar la consulta: " . implode(":", $resultado->errorInfo());
-        return $respuesta;
+        // $respuesta = "Error al ejecutar la consulta: " . implode(":", $resultado->errorInfo());
+        // return $respuesta;
+        return false;
     }else{
         return true;
     }
@@ -276,8 +310,8 @@ function insertQuestion($question) {
     $pdo = connectDb();
 
     if($pdo != null){
-        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table3"] ." (titulo, cuerpo, etiqueta, userID, guest_nombre, guest_email, fecha, respuesta)
-                        VALUES (:titulo, :cuerpo, :etiqueta, :userID, :guest_name, :guest_email, :fecha, :respuesta)";
+        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table3"] ." (titulo, cuerpo, etiqueta, userID, guest_nombre, guest_email, fecha, respuestas, :vistas)
+                        VALUES (:titulo, :cuerpo, :etiqueta, :userID, :guest_name, :guest_email, :fecha, :respuestas, :vistas)";
 
         $resultado = $pdo->prepare($consulta);
 
@@ -293,7 +327,8 @@ function insertQuestion($question) {
             ":guest_name" => $question->guest_nombre,
             ":guest_email" => $question->guest_email,
             ":fecha" => $question->fecha,
-            ":respuesta" => $question->respuesta
+            ":respuestas" => $question->respuestas,
+            ":vistas" => $question->vistas
         ])){
             return false;
             // $respuesta = "Error al ejecutar la consulta: " . implode(":", $resultado->errorInfo());

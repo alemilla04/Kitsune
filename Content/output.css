@@ -2100,6 +2100,10 @@ html:has(.drawer-toggle:checked) {
   margin-bottom: 30px;
 }
 
+.mb-\[5px\] {
+  margin-bottom: 5px;
+}
+
 .ml-2 {
   margin-left: 0.5rem;
 }
@@ -2162,10 +2166,6 @@ html:has(.drawer-toggle:checked) {
 
 .mt-\[5px\] {
   margin-top: 5px;
-}
-
-.mb-\[5px\] {
-  margin-bottom: 5px;
 }
 
 .box-border {
@@ -2265,10 +2265,6 @@ html:has(.drawer-toggle:checked) {
   width: 500px;
 }
 
-.w-screen {
-  width: 100vw;
-}
-
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -2307,14 +2303,6 @@ html:has(.drawer-toggle:checked) {
 
 .grid-rows-\[auto_1fr_auto\] {
   grid-template-rows: auto 1fr auto;
-}
-
-.grid-rows-\[auto_auto_1fr\] {
-  grid-template-rows: auto auto 1fr;
-}
-
-.flex-row {
-  flex-direction: row;
 }
 
 .flex-col {
@@ -2564,24 +2552,8 @@ html:has(.drawer-toggle:checked) {
   padding-top: 20px;
 }
 
-.pb-\[5px\] {
-  padding-bottom: 5px;
-}
-
-.pb-\[4px\] {
-  padding-bottom: 4px;
-}
-
-.text-left {
-  text-align: left;
-}
-
 .text-center {
   text-align: center;
-}
-
-.text-right {
-  text-align: right;
 }
 
 .text-2xl {
@@ -2772,6 +2744,10 @@ html:has(.drawer-toggle:checked) {
     margin: auto;
   }
 
+  .sm\:mb-\[10px\] {
+    margin-bottom: 10px;
+  }
+
   .sm\:ml-10 {
     margin-left: 2.5rem;
   }
@@ -2792,28 +2768,8 @@ html:has(.drawer-toggle:checked) {
     margin-right: 20px;
   }
 
-  .sm\:mb-\[10px\] {
-    margin-bottom: 10px;
-  }
-
-  .sm\:mt-\[5px\] {
-    margin-top: 5px;
-  }
-
   .sm\:flex {
     display: flex;
-  }
-
-  .sm\:grid {
-    display: grid;
-  }
-
-  .sm\:grid-cols-\[1fr\] {
-    grid-template-columns: 1fr;
-  }
-
-  .sm\:grid-rows-\[auto_1fr\] {
-    grid-template-rows: auto 1fr;
   }
 
   .sm\:flex-row {
@@ -2824,32 +2780,8 @@ html:has(.drawer-toggle:checked) {
     flex-direction: column;
   }
 
-  .sm\:justify-between {
-    justify-content: space-between;
-  }
-
-  .sm\:gap-4 {
-    gap: 1rem;
-  }
-
-  .sm\:gap-6 {
-    gap: 1.5rem;
-  }
-
-  .sm\:gap-8 {
-    gap: 2rem;
-  }
-
-  .sm\:gap-10 {
-    gap: 2.5rem;
-  }
-
   .sm\:gap-12 {
     gap: 3rem;
-  }
-
-  .sm\:text-right {
-    text-align: right;
   }
 }
 
@@ -2902,14 +2834,6 @@ html:has(.drawer-toggle:checked) {
     gap: 0.5rem;
   }
 
-  .md\:gap-\[4px\] {
-    gap: 4px;
-  }
-
-  .md\:gap-1 {
-    gap: 0.25rem;
-  }
-
   .md\:text-right {
     text-align: right;
   }
@@ -2944,34 +2868,6 @@ html:has(.drawer-toggle:checked) {
     display: none;
   }
 
-  .lg\:w-\[75\%\] {
-    width: 75%;
-  }
-
-  .lg\:w-\[70\%\] {
-    width: 70%;
-  }
-
-  .lg\:w-\[80\%\] {
-    width: 80%;
-  }
-
-  .lg\:w-\[50\%\] {
-    width: 50%;
-  }
-
-  .lg\:w-\[60\%\] {
-    width: 60%;
-  }
-
-  .lg\:w-\[57\%\] {
-    width: 57%;
-  }
-
-  .lg\:w-\[55\%\] {
-    width: 55%;
-  }
-
   .lg\:w-\[56\%\] {
     width: 56%;
   }
@@ -2998,14 +2894,6 @@ html:has(.drawer-toggle:checked) {
 
   .lg\:gap-2 {
     gap: 0.5rem;
-  }
-
-  .lg\:gap-\[4px\] {
-    gap: 4px;
-  }
-
-  .lg\:gap-1 {
-    gap: 0.25rem;
   }
 
   .lg\:text-right {

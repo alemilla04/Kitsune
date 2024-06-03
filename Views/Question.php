@@ -8,8 +8,10 @@ if($_SERVER["REQUEST_METHOD"] = "POST") {
     $preguntaID = $_POST["ir-a-question"];
     
     $question = getQuestion($preguntaID);
+    $question['vistas'] = $question['vistas'] + 1;
+    updateQuestion($question);
 
-    var_dump($question);
+    // var_dump($question);
 } else {
     header("Location: ".APP_FOLDER."/../Views/Home.php");
     exit();
@@ -45,12 +47,26 @@ if($_SERVER["REQUEST_METHOD"] = "POST") {
     require_once(__DIR__."/../Models/Header.php");
     ?>
     </header>
-    <main class="signup-main min-h-screen w-[100%] grid grid-cols-[auto_1fr] grid-rows-[1fr]">
+    <main class="min-h-screen w-[100%] grid grid-cols-[auto_1fr] grid-rows-[1fr]">
         <?php
         require_once(__DIR__."/../Models/Nav.php");
         ?>
         <div class="m-[20px_auto]">
-            
+            <?php
+            print "<div>";
+            print "  <h1>$question[titulo]</h1>";
+            print "  <div>";
+            print "    <span>Formulada $question[fecha]</span>";
+            print "    <span>Modificada $question[fecha]</span>";
+            print "    <span>Vista</span>";
+            if($question["vistas"]==1){
+                print "    <span>$question[vistas] vez</span>";
+            } else {
+                print "    <span>$question[vistas] veces</span>";
+            }
+            print "  </div>";
+            print "</div>";
+            ?>
         </div>
     </main>
     <footer>
