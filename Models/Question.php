@@ -1,6 +1,5 @@
 <?php
 class Question {
-    public $preguntaID = "";
     public $titulo = "";
     public $cuerpo = "";
     public $etiqueta = "";

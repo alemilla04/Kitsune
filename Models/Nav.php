@@ -19,7 +19,7 @@
                 <!-- Sidebar content here -->
                 <li><a class="hover:p-[10px] hover:font-bold" href="../Views/Home.php"><img class="w-[20px]" src="../Content/icons/casa.svg" alt="icono-casa">Inicio</a></li>
                 <li><a class="hover:p-[10px] hover:font-bold" href="../Views/Questions.php"><img class="w-[20px]" src="../Content/icons/preguntas.svg" alt="icono-preguntas">Preguntas</a></li>
-                <li><a class="hover:p-[10px] hover:font-bold" href=""><img class="w-[20px]" src="../Content/icons/etiquetas.svg" alt="icono-etiquetas">Etiquetas</a></li>
+                <li><a class="hover:p-[10px] hover:font-bold" href="../Views/Tags.php"><img class="w-[20px]" src="../Content/icons/etiquetas.svg" alt="icono-etiquetas">Etiquetas</a></li>
                 <li><a class="hover:p-[10px] hover:font-bold" href="../Views/Experiences.php"><img class="w-[20px]" src="../Content/icons/experiencias.svg" alt="icono-experiencias">Experiencias</a></li>
                 <li class="mt-[40px]"><a class="hover:p-[10px] hover:font-bold" href="../Views/Users.php"><img class="w-[20px]" src="../Content/icons/usuarios.svg" alt="icono-usuarios">Usuarios</a></li>
                 <li><a class="hover:p-[10px] hover:font-bold" href=""><img class="w-[20px]" src="../Content/icons/respuestas.svg" alt="icono-respuestas">Sin responder</a></li>

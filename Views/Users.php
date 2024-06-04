@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once(__DIR__ . "/../Models/Funciones.php");
+require_once(__DIR__ . "/../Models/Autoload.php");
 $listaUsuarios = selectUsers();
 ?>
 <!DOCTYPE html>
@@ -12,10 +11,6 @@ $listaUsuarios = selectUsers();
     <title>Document</title>
     <link rel="stylesheet" href="../Content/output.css">
     <style>
-        :root {
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-        }
-
         main {
             flex:1;
             display: grid;
@@ -73,7 +68,7 @@ $listaUsuarios = selectUsers();
                         echo "</div>";
                     }
                 } else {
-                    echo "<p>Hemos sido engañados</p>";
+                    echo "<p>Todavia no hay usuarios registrados</p>";
                 }
                 ?>
             </div>

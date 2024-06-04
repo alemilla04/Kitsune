@@ -1,16 +1,16 @@
 <?php
-session_start();
-if(isset($_SESSION["error"])){
-    $error = $_SESSION["error"];
-    unset($_SESSION["error"]);
+require_once(__DIR__ . "/../Models/Autoload.php");
+if(isset($_SESSION["ename"])){
+    $error = $_SESSION["ename"];
+    unset($_SESSION["ename"]);
 }
-if(isset($_SESSION["error2"])){
-    $error2 = $_SESSION["error2"];
-    unset($_SESSION["error2"]);
+if(isset($_SESSION["eexperiencia"])){
+    $error2 = $_SESSION["eexperiencia"];
+    unset($_SESSION["eexperiencia"]);
 }
-if(isset($_SESSION["error3"])){
-    $error3 = $_SESSION["error3"];
-    unset($_SESSION["error3"]);
+if(isset($_SESSION["eopinion"])){
+    $error3 = $_SESSION["eopinion"];
+    unset($_SESSION["eopinion"]);
 }
 ?>
 <!DOCTYPE html>
@@ -28,14 +28,13 @@ if(isset($_SESSION["error3"])){
     require("../Models/Header.php");
     ?>
     <main class="grid justify-center border-2 p-4 border-white rounded-sm">
-        <p class="text-center mb-4 size-4">Formulario de opinion de usuario</p>
         <form action="../Controllers/GroupsController.php" method="POST" class="flex flex-col gap-1">
             <label>Nombre: </label>
-                <input type="text" id="name" name="nombre" size="20" class="bg-white text-black">
+                <input type="text" id="name" name="name" size="20" class="bg-white text-black">
             <label>Describala su experiencia en otras paginas: </label>
-                <input type="text" id="textDesc1" name="texto1" size="20" class="bg-white text-black lg-rounded">
+                <input type="text" id="textDesc1" name="experiencia" size="20" class="bg-white text-black lg-rounded">
             <label>Puntuacion de esta pagina: </label>
-                <input type="text" id="textDesc2" name="texto2" size="20" class="bg-white text-black lg-rounded">
+                <input type="text" id="textDesc2" name="opinion" size="20" class="bg-white text-black lg-rounded">
             <button type="submit">Guardar</button>
         </form>
         <?php

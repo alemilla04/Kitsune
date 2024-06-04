@@ -1,8 +1,8 @@
 <?php
 class Experience {
     public $name = "";
+    public $experiencia = "";
     public $opinion = "";
-    public $puntuaje = "";
     
 
     public function __construct() {

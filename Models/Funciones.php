@@ -19,6 +19,8 @@ function checkPassword($password){
     return false;
 }
 
+// CONECTAR A LA BASE DE DATOS
+
 function connectDb(){
 
     global $cfg; 
@@ -89,6 +91,159 @@ function selectUsers(){
     // }
 }
 
+
+function selectUser($email) {
+    global $cfg;
+    global $pdo;
+
+    $pdo = connectDb();
+
+    $consulta = "SELECT * FROM " . $cfg["mysqlTable"]["table4"] ." WHERE email = :email";
+
+    $resultado = $pdo->prepare($consulta);
+
+    if(!$resultado) {
+        return null;
+    } elseif(!$resultado->execute([":email"=>$email])) {
+        return null;
+    }else{
+        return $resultado->fetch(PDO::FETCH_ASSOC);
+    }
+}
+
+function selectUserByUserID($userID) {
+    global $cfg;
+    global $pdo;
+    
+    $pdo = connectDb();
+
+    $consulta = "SELECT * FROM " . $cfg["mysqlTable"]["table4"] ." WHERE userID = :userID";
+    
+    $resultado = $pdo->prepare($consulta);
+
+    if(!$resultado) {
+        return null;
+    } elseif(!$resultado->execute([":userID"=>$userID])) {
+        return null;
+    }else{
+        return $resultado->fetch(PDO::FETCH_ASSOC);
+    }
+}
+
+function insertUser($usuario){
+    global $pdo, $cfg;
+    
+    $pdo = connectDb();
+
+    if($pdo != null){
+        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table4"] ." (nombre, email, contraseña, foto)
+                    VALUES (:nombre, :email, :contrasena, :foto)";
+
+        $resultado = $pdo->prepare($consulta);
+        
+        if(!$resultado){
+            return false;
+            // $respuesta = "error en resultado.";
+            // return $respuesta;
+        } elseif(!$resultado->execute([
+            ":nombre" => $usuario->nombre,
+            ":email" => $usuario->email,
+            ":contrasena" => $usuario->password,
+            ":foto" => $usuario->foto
+        ])){
+            return false;
+            // $respuesta = "Error al ejecutar la consulta: " . implode(":", $resultado->errorInfo());
+            // return $respuesta;
+        } else {
+            return true;
+        }
+    } else {
+        return false;
+    }
+
+}
+
+function updateUser($user){
+    global $pdo, $cfg;
+    
+    $pdo = connectDb();
+    
+    $consulta = "UPDATE " . $cfg["mysqlTable"]["table4"] ." SET nombre = :nombre, email = :email, foto = :foto, preguntas = :preguntas, respuestas = :respuestas WHERE userID = :userID";
+
+    $resultado = $pdo->prepare($consulta);
+    
+    $params = [
+        ":nombre" => $user["nombre"],
+        ":email" => $user["email"],
+        ":foto" => $user["foto"],
+        ":preguntas" => $user["preguntas"],
+        ":respuestas" => $user["respuestas"],
+        ":userID" => $user["userID"]
+    ];
+    
+    if(!$resultado){
+        // $respuesta = "error en resultado.";
+        // return $respuesta;
+        return false;
+    }elseif(!$resultado->execute($params)){
+        // $respuesta = "Error al ejecutar la consulta: " . implode(":", $resultado->errorInfo());
+        // return $respuesta;
+        return false;
+    }else{
+        return true;
+    }
+    
+}
+
+function updateDataUser($user,$id){
+    global $pdo, $cfg;
+
+    $pdo = connectDb();
+    
+    $consulta = "UPDATE " . $cfg["mysqlTable"]["table4"] ." SET nombre = :nombre, email = :email, foto = :foto WHERE userID = :userID";
+    
+    $resultado = $pdo->prepare($consulta);
+    
+    $params = [
+        ":nombre" => $user->nombre,
+        ":email" => $user->email,
+        ":foto" => $user->foto,
+        ":userID" => $id
+    ];
+    
+    if(!$resultado){
+        return false;
+    }elseif(!$resultado->execute($params)){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+function deleteUser($id){
+    global $pdo, $cfg;
+
+    $pdo = connectDb();
+    
+    $consulta = "DELETE FROM " . $cfg["mysqlTable"]["table4"] ." WHERE userID = :id";
+    
+    $resultado = $pdo->prepare($consulta);
+    
+    if(!$resultado){
+        return false;
+    }elseif(!$resultado->execute([":id"=>$id])){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+function updatePasswordUser($password){
+    
+}
+
+// TABLA PREGUNTAS
+
 function getQuestions(){
     global $pdo, $cfg;
 
@@ -129,181 +284,6 @@ function getQuestion($preguntaID){
     }
 }
 
-function updateQuestion($pregunta){
-    global $pdo, $cfg;
-
-    $pdo = connectDb();
-
-    $consulta = "UPDATE " . $cfg["mysqlTable"]["table3"] ." SET titulo = :titulo, cuerpo = :cuerpo, etiqueta = :etiqueta, guest_nombre = :guest_nombre, guest_email = :guest_email, vistas = :vistas WHERE preguntaID = :preguntaID";
-
-    $resultado = $pdo->prepare($consulta);
-
-    $params = [
-        ":titulo" => $pregunta["titulo"],
-        ":cuerpo" => $pregunta["cuerpo"],
-        ":etiqueta" => $pregunta["etiqueta"],
-        ":guest_nombre" => $pregunta["guest_nombre"],
-        ":guest_email" => $pregunta["guest_email"],
-        ":vistas" => $pregunta["vistas"],
-        ":preguntaID" => $pregunta["preguntaID"]
-    ];
-
-    if(!$resultado){
-        // $respuesta = "error en resultado.";
-        // return $respuesta;
-        return false;
-    }elseif(!$resultado->execute($params)){
-        // $respuesta = "Error al ejecutar la consulta: " . implode(":", $resultado->errorInfo());
-        // return $respuesta;
-        return false;
-    }else{
-        return true;
-    }
-}
-
-function selectUser($email) {
-    global $cfg;
-    global $pdo;
-
-    $pdo = connectDb();
-
-    $consulta = "SELECT * FROM " . $cfg["mysqlTable"]["table4"] ." WHERE email = :email";
-
-    $resultado = $pdo->prepare($consulta);
-
-    if(!$resultado) {
-        return null;
-    } elseif(!$resultado->execute([":email"=>$email])) {
-        return null;
-    }else{
-        return $resultado->fetch(PDO::FETCH_ASSOC);
-    }
-}
-
-function selectUserByUserID($userID) {
-    global $cfg;
-    global $pdo;
-
-    $pdo = connectDb();
-
-    $consulta = "SELECT * FROM " . $cfg["mysqlTable"]["table4"] ." WHERE userID = :userID";
-
-    $resultado = $pdo->prepare($consulta);
-
-    if(!$resultado) {
-        return null;
-    } elseif(!$resultado->execute([":userID"=>$userID])) {
-        return null;
-    }else{
-        return $resultado->fetch(PDO::FETCH_ASSOC);
-    }
-}
-
-function selectExperiences(){
-    global $cfg, $pdo;
-    //Creamos el array
-    $experiences = [];
-
-    $pdo = connectDb();
-
-    $query = "SELECT * FROM " . $cfg["mysqlTable"]["table2"];
-
-    $resultado = $pdo->query($query);
-    foreach ($resultado as $row) {
-        $experiences[] = $row;
-    }
-
-    return $experiences;
-}
-
-function insertUser($usuario){
-    global $pdo, $cfg;
-
-    $pdo = connectDb();
-
-    if($pdo != null){
-        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table4"] ." (nombre, email, contraseña, foto)
-                    VALUES (:nombre, :email, :contrasena, :foto)";
-
-        $resultado = $pdo->prepare($consulta);
-
-        if(!$resultado){
-            return false;
-            // $respuesta = "error en resultado.";
-            // return $respuesta;
-        } elseif(!$resultado->execute([
-            ":nombre" => $usuario->nombre,
-            ":email" => $usuario->email,
-            ":contrasena" => $usuario->password,
-            ":foto" => $usuario->foto
-        ])){
-            return false;
-            // $respuesta = "Error al ejecutar la consulta: " . implode(":", $resultado->errorInfo());
-            // return $respuesta;
-        } else {
-            return true;
-        }
-    } else {
-        return false;
-    }
-
-}
-
-
-function deleteUser($id){
-    global $pdo, $cfg;
-
-    $pdo = connectDb();
-
-    $consulta = "DELETE FROM " . $cfg["mysqlTable"]["table4"] ." WHERE userID = :id";
-    
-    $resultado = $pdo->prepare($consulta);
-
-    if(!$resultado){
-        return false;
-    }elseif(!$resultado->execute([":id"=>$id])){
-        return false;
-    }else{
-        return true;
-    }
-}
-
-function updateUser($user){
-    global $pdo, $cfg;
-
-    $pdo = connectDb();
-
-    $consulta = "UPDATE " . $cfg["mysqlTable"]["table4"] ." SET nombre = :nombre, email = :email, foto = :foto, preguntas = :preguntas, respuestas = :respuestas WHERE userID = :userID";
-
-    $resultado = $pdo->prepare($consulta);
-
-    $params = [
-        ":nombre" => $user["nombre"],
-        ":email" => $user["email"],
-        ":foto" => $user["foto"],
-        ":preguntas" => $user["preguntas"],
-        ":respuestas" => $user["respuestas"],
-        ":userID" => $user["userID"]
-    ];
-
-    if(!$resultado){
-        // $respuesta = "error en resultado.";
-        // return $respuesta;
-        return false;
-    }elseif(!$resultado->execute($params)){
-        // $respuesta = "Error al ejecutar la consulta: " . implode(":", $resultado->errorInfo());
-        // return $respuesta;
-        return false;
-    }else{
-        return true;
-    }
-
-}
-
-function updatePasswordUser($password){
-
-}
-// TABLA PREGUNTAS
 function insertQuestion($question) {
     global $pdo,$cfg;
 
@@ -341,13 +321,119 @@ function insertQuestion($question) {
     }
 }
 
-function insertGuestsExperience($experiencia){
+function updateQuestion($pregunta){
+    global $pdo, $cfg;
+
+    $pdo = connectDb();
+
+    $consulta = "UPDATE " . $cfg["mysqlTable"]["table3"] ." SET titulo = :titulo, cuerpo = :cuerpo, etiqueta = :etiqueta, guest_nombre = :guest_nombre, guest_email = :guest_email, vistas = :vistas WHERE preguntaID = :preguntaID";
+
+    $resultado = $pdo->prepare($consulta);
+
+    $params = [
+        ":titulo" => $pregunta["titulo"],
+        ":cuerpo" => $pregunta["cuerpo"],
+        ":etiqueta" => $pregunta["etiqueta"],
+        ":guest_nombre" => $pregunta["guest_nombre"],
+        ":guest_email" => $pregunta["guest_email"],
+        ":vistas" => $pregunta["vistas"],
+        ":preguntaID" => $pregunta["preguntaID"]
+    ];
+
+    if(!$resultado){
+        // $respuesta = "error en resultado.";
+        // return $respuesta;
+        return false;
+    }elseif(!$resultado->execute($params)){
+        // $respuesta = "Error al ejecutar la consulta: " . implode(":", $resultado->errorInfo());
+        // return $respuesta;
+        return false;
+    }else{
+        return true;
+    }
+}
+
+// TABLA EXPERIENCIAS
+
+function selectExperiences(){
+    global $cfg, $pdo;
+    //Creamos el array
+    $experiences = [];
+
+    $pdo = connectDb();
+    
+    $query = "SELECT * FROM " . $cfg["mysqlTable"]["table2"];
+
+    $resultado = $pdo->query($query);
+    if($resultado){
+        foreach ($resultado as $row) {
+            $experiences[] = $row;
+        }
+    
+        return $experiences;
+    }else{
+        print "<p>Todavia no hay experiencias</p>";
+    }
+    
+}
+
+function insertGuestsExperience($experiencie){
+    var_dump($experiencie);
+
     global $pdo,$cfg;
 
     $pdo = connectDb();
 
-    $sql = "INSERT INTO ". $cfg["mysqlTable"]["table2"] ."(name,texto1,texto2) VALUES (:name,:texto1,:texto2)";
-    $resultado = $pdo->prepare($sql);
-    $resultado->execute([':name' => $experiencia->name,':texto1' => $experiencia->opinion,":texto2"=>$experiencia->puntuaje]);
+    if($pdo != null){
+        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table2"] ." (name,experiencia,opinion)
+                     VALUES (:name,:experiencia,:opinion)";
+        $resultado = $pdo->prepare($consulta);
+
+        if(!$resultado){
+            return false;
+        }elseif(!$resultado->execute([
+            ":name" => $experiencie->name,
+            ":experiencia" => $experiencie->experiencia,
+            ":opinion" => $experiencie->opinion
+        ])){
+            var_dump($resultado->errorInfo());
+            die();
+            return false;
+        }else{
+            return true;
+        }
+    }else{
+        return false;
+    }
+}
+
+// TABLA RESPUESTAS
+
+function insertResponse($response){
+    global $pdo, $cfg;
+
+    $pdo = connectDb();
+
+    if($pdo != null){
+        $consulta = "INSERT INTO " . $cfg["mysqlTable"]["table6"] ." (preguntaID,cuerpo,userID,fecha)
+                    VALUES (:idQuestion, :body, :idUser, :fecha)";
+
+        $resultado = $pdo->prepare($consulta);
+
+        if(!$resultado){
+            return false;
+        } elseif(!$resultado->execute([
+            ":idQuestion" => $response->preguntaID,
+            ":body" => $response->cuerpo,
+            ":idUser" => $response->userID,
+            ":fecha" => $response->fecha
+        ])){
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        return false;
+    }
 
 }

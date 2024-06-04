@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once(__DIR__ . "/../Models/Autoload.php");
 
 if(isset($_SESSION["errorLoginUsuario"])) {
     $errorUsuario = $_SESSION["errorLoginUsuario"];

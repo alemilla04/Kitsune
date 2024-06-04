@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once(__DIR__ . "/../Models/Funciones.php");
+require_once(__DIR__ . "/../Models/Autoload.php");
 $listaUsuarios = selectUsers();
 ?>
 

@@ -1,6 +1,5 @@
 <?php
 require_once(__DIR__ . "/../Models/Autoload.php");
-$usuario = selectUser($_SESSION["usuarioObjeto"]["email"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,15 +29,19 @@ $usuario = selectUser($_SESSION["usuarioObjeto"]["email"]);
         require("../Models/Nav.php");
         ?>
         <div>
-            <h1 class="text-4xl">Datos del usuario</h1>
             <div class="users-list">
                 <?php
                     print "<div>";
-                    print "<p>Nombre: ".$usuario["nombre"]."</p>";
-                    print "<p> Correo: ".$usuario["email"]."</p>";
-                    echo "<div class='w-16'>";
-                    echo '<img src="../Content/profile_pics/' . $usuario["foto"]. '" alt="Profile Picture">';
-                    echo "</div>";
+                    print "<p>Desea actualizar sus datos?</p>";
+                    print "<br>";
+                    print "<a href='../Views/UpdateData.php' class='bg-blue-500 p-2 text-white rounded-md'>Actualizar datos</a>";
+                    print "<br>";
+                    print "<br>";
+                    print "<p>Desea eliminar su cuenta?</p>";
+                    print "<br>";
+                    print "<a href='../Views/ConfirmDelete.php' class='bg-blue-500 p-2 text-white rounded-md'>Eliminar cuenta</a>";
+                    print "<br>";
+                    print "<br>";
                     print "</div>";
                 ?>
             </div>

@@ -1,6 +1,5 @@
 <?php
 class User {
-    public $userID = "";
     public $nombre = "";
     public $email = "";
     public $password = "";

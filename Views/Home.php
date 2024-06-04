@@ -1,3 +1,6 @@
+<?php
+require_once(__DIR__ . "/../Models/Autoload.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,16 +37,12 @@
         <h2 class="ml-2">Secciones de la pagina</h2>
         <br><hr>
         <!-- Div principal -->
-        <div class="p-4">
-            <div class="flex rounded-md border-2 w-[50%] p-4">
-                <h3 class="ml-4 mt-2">Discover Groups</h3>
-                <a href="../Views/Groups.php" class="bg-orange-500 p-2 ml-4 rounded-md">Next</a>
-            </div>
-            <div class="flex rounded-md border-2 w-[50%] p-4 mt-4">
-                <h3 class="ml-4 mt-2">Discover reviews</h3>
-                <a href="../Views/ShowMessagesGroups.php" class="bg-orange-500 p-2 ml-4 rounded-md">Next</a>
-            </div>
-        </div>
+        <?php
+            if(isset($_SESSION["usere"])){
+                print "<p>".$_SESSION['usere']."</p>";
+                unset($_SESSION['usere']);
+            }
+        ?>
     </div>
     </main>
     <?php

@@ -1,7 +1,5 @@
 <?php
-require_once(__DIR__ . "/../Models/funciones.php");
-session_start();
-global $cfg, $pdo;
+require_once(__DIR__ . "/../Models/Autoload.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -44,7 +42,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location:../Views/Login.php");
         exit();
     }
-} else {
-    header("Location: ".APP_FOLDER."/../Views/Home.php");
-    exit();
 }

@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once(__DIR__ . "/../Models/Funciones.php");
+require_once(__DIR__ . "/../Models/Autoload.php");
 $listaUsuarios = selectUsers();
 ?>
 
@@ -15,6 +14,7 @@ $listaUsuarios = selectUsers();
     <script src="../Scripts/Counter.js"></script>
     <style>
         :root {
+            font-size: 18px;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
     </style>
@@ -42,7 +42,7 @@ $listaUsuarios = selectUsers();
                 <!-- Aqui poner algo rollo asi para los usuario o mostrar el nombre con un icono para hablar entre ellos -->
                 <div class="w-[500px] h-[80%] sm:ml-10 lg:ml-48 
                 sm:bg-whitemr-5 mt-5 mb-5 border-4 
-                border-black rounded-md">
+                border-black rounded-md text-white">
                 <!-- Esto es un posible idea cosas como descubre temas o unete a la comunidad -->
                 <!-- En los siguientes cuadros-->
                     <div class="border-2 border-black mt-4 ml-4 mr-4 mb-4 rounded-md flex justify-center gap-4 p-4">
