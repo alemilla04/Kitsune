@@ -258,7 +258,7 @@ function getQuestions(){
         $listaPreguntas = array();
         
         foreach($resultado as $registro){
-            $pregunta = array("preguntaID" => $registro["preguntaID"], "titulo" => $registro["titulo"], "cuerpo" => $registro["cuerpo"], "etiqueta" => $registro["etiqueta"], "userID" => $registro["userID"], "guest_nombre" => $registro["guest_nombre"], "guest_email" => $registro["guest_email"], "fecha" => $registro["fecha"], "respuestas" => $registro["respuestas"], "vistas" => $registro["vistas"]);
+            $pregunta = array("preguntaID" => $registro["preguntaID"], "titulo" => $registro["titulo"], "cuerpo" => $registro["cuerpo"], "etiqueta" => $registro["etiqueta"], "userID" => $registro["userID"], "guest_nombre" => $registro["guest_nombre"], "guest_email" => $registro["guest_email"], "fecha" => $registro["fecha"], "respuestas" => $registro["respuestas"], "vistas" => $registro["vistas"], "puntuacion" => $registro["puntuacion"]);
             array_push($listaPreguntas, $pregunta);
         }
         return $listaPreguntas;
@@ -308,7 +308,8 @@ function insertQuestion($question) {
             ":guest_email" => $question->guest_email,
             ":fecha" => $question->fecha,
             ":respuestas" => $question->respuestas,
-            ":vistas" => $question->vistas
+            ":vistas" => $question->vistas,
+            ":puntuacion" => $question->puntuacion
         ])){
             return false;
             // $respuesta = "Error al ejecutar la consulta: " . implode(":", $resultado->errorInfo());

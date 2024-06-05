@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 04, 2024 at 10:42 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 05-06-2024 a las 13:54:12
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `kitsune`
+-- Base de datos: `kitsune`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categorias`
+-- Estructura de tabla para la tabla `categorias`
 --
 
 CREATE TABLE `categorias` (
@@ -35,7 +35,7 @@ CREATE TABLE `categorias` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `etiquetas`
+-- Estructura de tabla para la tabla `etiquetas`
 --
 
 CREATE TABLE `etiquetas` (
@@ -47,7 +47,7 @@ CREATE TABLE `etiquetas` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `experiencias`
+-- Estructura de tabla para la tabla `experiencias`
 --
 
 CREATE TABLE `experiencias` (
@@ -60,52 +60,54 @@ CREATE TABLE `experiencias` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `preguntas`
+-- Estructura de tabla para la tabla `preguntas`
 --
 
 CREATE TABLE `preguntas` (
   `preguntaID` int(11) NOT NULL,
   `titulo` varchar(100) NOT NULL,
-  `cuerpo` varchar(100) NOT NULL,
+  `cuerpo` varchar(700) NOT NULL,
   `etiqueta` varchar(100) NOT NULL,
-  `userID` int(11) DEFAULT NULL,
+  `userID` int(11) NOT NULL DEFAULT 0,
   `guest_nombre` varchar(100) DEFAULT NULL,
   `guest_email` varchar(100) DEFAULT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `respuestas` int(11) DEFAULT 0,
-  `vistas` int(11) NOT NULL DEFAULT 0
+  `respuestas` int(11) NOT NULL DEFAULT 0,
+  `vistas` int(11) NOT NULL DEFAULT 0,
+  `puntuacion` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `preguntas`
+-- Volcado de datos para la tabla `preguntas`
 --
 
-INSERT INTO `preguntas` (`preguntaID`, `titulo`, `cuerpo`, `etiqueta`, `userID`, `guest_nombre`, `guest_email`, `fecha`, `respuestas`, `vistas`) VALUES
-(1, 'prueba', 'prueba 1.1', 'prueba ', NULL, 'juan', 'juan@gmail.com', '2024-06-02 14:49:22', 0, 0),
-(2, 'prueba 2', 'prueba 1.2', 'prueba', 1, NULL, NULL, '2024-06-02 14:54:01', 0, 0),
-(3, 'prueba 3', 'prueba 1.3', 'prueba', 2, NULL, NULL, '2024-06-02 14:57:01', 0, 0),
-(4, 'prueba 4', 'prueba 1.4', 'prueba', 2, NULL, NULL, '2024-06-02 14:57:17', 0, 0),
-(5, 'prueba 5', 'prueba 1.5', 'prueba', 2, NULL, NULL, '2024-06-02 14:57:51', 0, 0),
-(6, 'prueba 6', 'prueba 1.6', 'prueba', NULL, 'antonio jose j', 'antonio@gmail.com', '2024-06-03 18:32:47', 0, 4);
+INSERT INTO `preguntas` (`preguntaID`, `titulo`, `cuerpo`, `etiqueta`, `userID`, `guest_nombre`, `guest_email`, `fecha`, `respuestas`, `vistas`, `puntuacion`) VALUES
+(1, 'prueba', 'prueba 1.1', 'prueba ', 0, 'juan', 'juan@gmail.com', '2024-06-02 14:49:22', 0, 0, 0),
+(2, 'prueba 2', 'prueba 1.2', 'prueba', 1, NULL, NULL, '2024-06-02 14:54:01', 0, 0, 0),
+(3, 'prueba 3', 'prueba 1.3', 'prueba', 2, NULL, NULL, '2024-06-02 14:57:01', 0, 0, 0),
+(4, 'prueba 4', 'prueba 1.4', 'prueba', 2, NULL, NULL, '2024-06-02 14:57:17', 0, 0, 0),
+(5, 'prueba 5', 'prueba 1.5', 'prueba', 2, NULL, NULL, '2024-06-04 10:15:01', 0, 4, 0),
+(6, 'prueba 6', 'He estado usando la biblioteca googletrans de python para realizar traducciones y a la hora de hacerlo con archivos .po no consigo hacerlo, ya que estoy obteniendo errores para escapar algunos caracteres.\n\nPor ejemplo en esta parte del archivo .po no pu', 'prueba', 0, 'antonio jose j', 'antonio@gmail.com', '2024-06-05 11:53:17', 0, 24, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `respuestas`
+-- Estructura de tabla para la tabla `respuestas`
 --
 
 CREATE TABLE `respuestas` (
   `respuestaID` int(11) NOT NULL,
-  `preguntaID` int(11) DEFAULT NULL,
-  `cuerpo` varchar(100) NOT NULL,
-  `userID` int(11) DEFAULT NULL,
-  `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `preguntaID` int(11) NOT NULL DEFAULT 0,
+  `cuerpo` varchar(700) NOT NULL,
+  `userID` int(11) NOT NULL DEFAULT 0,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `puntuacion` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -114,12 +116,12 @@ CREATE TABLE `usuarios` (
   `email` varchar(100) NOT NULL,
   `contraseña` varchar(100) NOT NULL,
   `foto` varchar(100) NOT NULL,
-  `preguntas` int(11) DEFAULT 0,
-  `respuestas` int(11) DEFAULT 0
+  `preguntas` int(11) NOT NULL DEFAULT 0,
+  `respuestas` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`userID`, `nombre`, `email`, `contraseña`, `foto`, `preguntas`, `respuestas`) VALUES
@@ -127,103 +129,104 @@ INSERT INTO `usuarios` (`userID`, `nombre`, `email`, `contraseña`, `foto`, `pre
 (2, 'german', 'german@gmail.com', '$2y$10$/USMZLkjfCxx0BmE/vkqdeQh72/SJzkUScYn.lkx8ukjHSrhCjHXK', 'sergioramos.jpg', 3, 0);
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `categorias`
+-- Indices de la tabla `categorias`
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`categoriaID`);
 
 --
--- Indexes for table `etiquetas`
+-- Indices de la tabla `etiquetas`
 --
 ALTER TABLE `etiquetas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `experiencias`
+-- Indices de la tabla `experiencias`
 --
 ALTER TABLE `experiencias`
   ADD PRIMARY KEY (`id_experience`);
 
 --
--- Indexes for table `preguntas`
+-- Indices de la tabla `preguntas`
 --
 ALTER TABLE `preguntas`
   ADD PRIMARY KEY (`preguntaID`),
   ADD KEY `fk_userID` (`userID`);
 
 --
--- Indexes for table `respuestas`
+-- Indices de la tabla `respuestas`
 --
 ALTER TABLE `respuestas`
   ADD PRIMARY KEY (`respuestaID`),
-  ADD KEY `fk_userIDres` (`userID`);
+  ADD KEY `fk_userIDres` (`userID`),
+  ADD KEY `fk_preIDres` (`preguntaID`);
 
 --
--- Indexes for table `usuarios`
+-- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`userID`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `contraseña` (`contraseña`);
+  ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `categorias`
+-- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
   MODIFY `categoriaID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `etiquetas`
+-- AUTO_INCREMENT de la tabla `etiquetas`
 --
 ALTER TABLE `etiquetas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `experiencias`
+-- AUTO_INCREMENT de la tabla `experiencias`
 --
 ALTER TABLE `experiencias`
   MODIFY `id_experience` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `preguntas`
+-- AUTO_INCREMENT de la tabla `preguntas`
 --
 ALTER TABLE `preguntas`
   MODIFY `preguntaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `respuestas`
+-- AUTO_INCREMENT de la tabla `respuestas`
 --
 ALTER TABLE `respuestas`
   MODIFY `respuestaID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `preguntas`
+-- Filtros para la tabla `preguntas`
 --
 ALTER TABLE `preguntas`
   ADD CONSTRAINT `fk_userID` FOREIGN KEY (`userID`) REFERENCES `usuarios` (`userID`);
 
 --
--- Constraints for table `respuestas`
+-- Filtros para la tabla `respuestas`
 --
 ALTER TABLE `respuestas`
+  ADD CONSTRAINT `fk_preIDres` FOREIGN KEY (`preguntaID`) REFERENCES `preguntas` (`preguntaID`),
   ADD CONSTRAINT `fk_userIDres` FOREIGN KEY (`userID`) REFERENCES `usuarios` (`userID`);
 COMMIT;
 

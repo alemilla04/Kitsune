@@ -30,7 +30,8 @@ $questions = getQuestions();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <spannk rel="stylesheet" href="../Content/output.css">
+    <link rel="stylesheet" href="../Content/output.css">
+    <script type="module" src="../Scripts/Filtros.js"></script>
     <style>
         :root {
             font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -92,9 +93,11 @@ $questions = getQuestions();
             print "<h1 class='flex-grow'> ". count($questions) ." preguntas en total</h1>";
             ?>
             <div class='flex-grow text-sm flex justify-between border-[1px] rounded-[5px] border-[#BABFC5] p-[3px]'>
-                <span class='hover:bg-[#eff0f0] rounded-[5px] p-[8px]'>Mas reciente</span>       
-                <span class='hover:bg-[#eff0f0] rounded-[5px] p-[8px]'>Sin responder</span>
-                <span class='hover:bg-[#eff0f0] rounded-[5px] p-[8px]'>Puntuacion</span>
+                <form action="<?php $_SERVER["PHP_SELF"]?>">
+                    <button type='button' name="reciente" class='hover:bg-[#eff0f0] rounded-[5px] p-[8px] focus:bg-[#eff0f0]'>Mas reciente</button>       
+                    <button type='button' name="no-response" class='hover:bg-[#eff0f0] rounded-[5px] p-[8px] focus:bg-[#eff0f0]'>Sin responder</button>
+                    <button type='button' name="puntuacion" class='hover:bg-[#eff0f0] rounded-[5px] p-[8px] focus:bg-[#eff0f0]'>Puntuacion</button>
+                </form>
             </div>
             <div>
                 <label>Etiquetadas con:</label>
